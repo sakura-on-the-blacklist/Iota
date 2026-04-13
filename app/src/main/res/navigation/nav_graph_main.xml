@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<navigation
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragment_phone_number">
+    <fragment
+        android:id="@+id/fragment_phone_number"
+        android:name="edu.ph.iota.fragments.PhoneNumberFragment"
+        android:label=""
+        tools:layout="@layout/fragment_phone_number">
+        <action
+            android:id="@+id/from_phone_number_to_one_time_password"
+            app:destination="@id/fragment_one_time_password" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_one_time_password"
+        android:name="edu.ph.iota.fragments.OneTimePasswordFragment"
+        android:label=""
+        tools:layout="@layout/fragment_one_time_password">
+        <action
+            android:id="@+id/from_one_time_password_to_name"
+            app:destination="@id/fragment_name" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_name"
+        android:name="edu.ph.iota.fragments.NameFragment"
+        android:label=""
+        tools:layout="@layout/fragment_name">
+        <action
+            android:id="@+id/from_name_to_birthday"
+            app:destination="@id/fragment_birthday" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_birthday"
+        android:name="edu.ph.iota.fragments.BirthdayFragment"
+        android:label=""
+        tools:layout="@layout/fragment_birthday">
+        <action
+            android:id="@+id/from_birthday_to_username"
+            app:destination="@id/fragment_username" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragment_username"
+        android:name="edu.ph.iota.fragments.UsernameFragment"
+        android:label=""
+        tools:layout="@layout/fragment_username">
+    </fragment>
+</navigation>

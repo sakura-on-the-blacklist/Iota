@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/cream"
+    android:padding="16dp"
+    tools:context=".fragments.NameFragment">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="16dp"
+        android:layout_weight="1"
+        android:gravity="center|top"
+        android:orientation="vertical"
+        android:padding="8dp">
+        <ImageView
+            android:layout_width="130dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo_black" />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:text="@string/text_name"
+            android:textAlignment="center"
+            android:textColor="@color/darkbrown"
+            android:textStyle="bold"
+            android:fontFamily="@font/lusitana"/>
+        <EditText
+            android:id="@+id/edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:autofillHints="givenName"
+            android:background="@null"
+            android:gravity="center"
+            android:textColor="@color/darkbrown"
+            android:hint="@string/hint_name"
+            android:fontFamily="@font/lusitana"
+            android:textColorHint="@color/darkbrown"
+            android:inputType="textPersonName"
+            android:maxLength="50"
+            android:textSize="24dp"
+            android:textStyle="bold" />
+    </LinearLayout>
+    <Button
+        android:id="@+id/continueButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/continue_button_selector"
+        app:backgroundTint="@null"
+        android:stateListAnimator="@null"
+        android:text="Continue"
+        android:enabled="false"
+        android:fontFamily="@font/lusitana"
+        android:textColor="@color/black"/>
+</LinearLayout>

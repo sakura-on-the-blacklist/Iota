@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "866509377519",
+    "project_id": "iota-110b1",
+    "storage_bucket": "iota-110b1.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:866509377519:android:076c206819f0ae5f3b301a",
+        "android_client_info": {
+          "package_name": "edu.ph.iota"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB9_BhYFBfYGKsf8wTyQa8BYbvYsVQw6Uk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
