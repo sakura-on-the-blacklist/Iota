@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/brown1"
+    android:padding="24dp"
+    tools:context=".fragments.CreateFirstHabitFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <ImageView
+            android:layout_width="168dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="1dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/logo_white" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Check in your habits.\n Track your progress."
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:textAlignment="center"
+            android:fontFamily="@font/lusitana"
+            android:layout_marginBottom="32dp" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal">
+
+            <View
+                android:id="@+id/circle"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/circle_lightbrown"
+                app:layout_constraintWidth_percent="0.8"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <View
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:background="@drawable/pebble_background"
+                android:elevation="12dp"
+                app:layout_constraintDimensionRatio="1:1"
+                app:layout_constraintWidth_percent="0.25"
+                app:layout_constraintTop_toTopOf="@id/circle"
+                app:layout_constraintBottom_toBottomOf="@id/circle"
+                app:layout_constraintStart_toStartOf="@id/circle"
+                app:layout_constraintEnd_toEndOf="@id/circle" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="32dp">
+
+        <Button
+            android:id="@+id/btnCreateFirstHabit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Create first habit"
+            android:backgroundTint="@color/white"
+            android:textColor="@color/black"
+            android:padding="16dp"
+            android:fontFamily="@font/inter_bold" />
+
+        <Button
+            android:id="@+id/btnContinueWithAccount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="Continue with an account"
+            android:backgroundTint="@color/gray"
+            android:textColor="@color/white"
+            android:padding="16dp"
+            android:fontFamily="@font/inter_bold" />
+
+    </LinearLayout>
+
+</LinearLayout>

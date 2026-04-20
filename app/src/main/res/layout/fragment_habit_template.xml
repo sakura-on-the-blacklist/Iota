@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/cream"
+    android:padding="24dp"
+    tools:context=".fragments.HabitTemplateFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Let's get your first\n habit set up"
+            android:textSize="34sp"
+            android:textStyle="bold"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/lusitana"
+            android:layout_marginBottom="16dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Start with a very small, easy change\n that helps you get powerful results."
+            android:textSize="16sp"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/lusitana"
+            android:layout_marginBottom="32dp" />
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="32dp">
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/cardView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardCornerRadius="70dp"
+                app:cardBackgroundColor="@color/white"
+                app:strokeWidth="0dp"
+                app:cardUseCompatPadding="true"
+                app:cardElevation="5dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="28dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="I will"
+                        android:textSize="18sp"
+                        android:textColor="@color/gray"
+                        android:textAlignment="center"
+                        android:fontStyle="italic"
+                        android:fontFamily="@font/lusitana" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="[habit], [at time/location]"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/gray"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/lusitana"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="so that I can become"
+                        android:textSize="18sp"
+                        android:textColor="@color/gray"
+                        android:textAlignment="center"
+                        android:fontStyle="italic"
+                        android:fontFamily="@font/lusitana"
+                        android:layout_marginTop="16dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="[the type of person I want\n to be]"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:textColor="@color/gray"
+                        android:textAlignment="center"
+                        android:fontFamily="@font/lusitana"
+                        android:layout_marginTop="8dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+            <View
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="@drawable/pebble_background"
+                android:layout_gravity="top|end"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:elevation="1dp"
+                android:translationZ="10dp"
+                android:outlineProvider="none"/>
+
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:text="Press and hold to start creating your first habit."
+            android:textSize="16sp"
+            android:textColor="@color/gray"
+            android:fontFamily="@font/lusitana"
+            android:layout_marginBottom="32dp" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnContinue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_continue"
+        android:backgroundTint="@color/brown"
+        android:textColor="@color/white"
+        android:padding="16dp"
+        android:enabled="true"
+        android:fontFamily="@font/inter_bold" />
+
+</LinearLayout>

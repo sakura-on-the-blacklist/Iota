@@ -3,9 +3,12 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#676767</color>
+    <color name="lightgray">#E6E7E8</color>
     <color name="darkgray">#383838</color>
     <color name="cream">#FFF7ED</color>
     <color name="darkbrown">#7B6F72</color>
     <color name="brown">#753B00</color>
+    <color name="brown1">#4c463d</color>
+    <color name="lightbrown">#8a7c6d</color>
     <color name="orange">#DA840D</color>
 </resources>
