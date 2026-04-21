@@ -9,7 +9,6 @@ local.properties
 .gradle*
 
 .idea/*
-!.idea/codeStyles
-!.idea/codeStyles/*
+!.idea/codeStyles/codeStylesConfig.xml
 gradle/*
 !gradle/ibs.versions.toml
