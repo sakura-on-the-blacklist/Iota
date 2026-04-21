@@ -64,5 +64,6 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
-
+    <string name="feed_02_example_goal"> I will open my phone after washing my face, every morning so that I can become more disciplined person </string>
+    <string name="feed_02_example_title_records"> Records &amp; Streaks </string>
 </resources>
