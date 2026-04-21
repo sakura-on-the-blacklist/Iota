@@ -6,8 +6,10 @@
 .cxx
 
 local.properties
-.idea*
 .gradle*
 
-!gradle/ibs.versions.toml
+.idea/*
+!.idea/codeStyles
+!.idea/codeStyles/*
 gradle/*
+!gradle/ibs.versions.toml
