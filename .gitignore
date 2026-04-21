@@ -8,4 +8,6 @@
 local.properties
 .idea*
 .gradle*
-!*libs.versions.toml
+
+!gradle/ibs.versions.toml
+gradle/*
