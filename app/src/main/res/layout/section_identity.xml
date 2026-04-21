@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:justifyContent="flex_start"
+        app:alignItems="center"
+        android:layout_margin="35dp"
+        app:flexDirection="row"
+        app:layout_flexGrow="1"
+        >
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I will"
+            android:fontFamily="@font/lusitana"
+            android:textSize="25dp"
+            android:textColor="@color/lightgray"/>
+
+        <EditText
+            android:id="@+id/editTextHabit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/lusitana"
+            android:hint="habit"
+            android:backgroundTint="@color/orange"
+            android:textSize="25dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=","
+            android:textSize="25dp"
+            android:textColor="@color/lightgray"
+            android:fontFamily="@font/lusitana"/>
+
+        <EditText
+            android:id="@+id/editTextLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="time/location"
+            android:textSize="25dp"
+            android:backgroundTint="@color/orange"
+            android:fontFamily="@font/lusitana"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="so that I can become"
+            android:textSize="25dp"
+            android:textColor="@color/lightgray"
+            android:fontFamily="@font/lusitana"/>
+
+        <EditText
+            android:id="@+id/editTextIdentity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="25dp"
+            android:backgroundTint="@color/orange"
+            android:hint="type of person you want to be"
+            android:fontFamily="@font/lusitana"/>
+    </com.google.android.flexbox.FlexboxLayout>
+
+
+</LinearLayout>
