@@ -64,6 +64,13 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="habit_details_example_goal"> I will open my phone after washing my face, every morning so that I can become more disciplined person </string>
+    <string name="habit_details_example_title_records"> Records &amp; Streaks </string>
+    <string name="habit_details_example_review_title">How do you feel about your progress towards forming “Open my phone after washing my face” habit?</string>
+    <string name="habit_details_example_review_response">
+        Yesterday:\n
+         It was hard getting out of my bed without looking at my phone. I was still anxious and had  a strong urge to just open the phone and watch random videos.
+    </string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 
