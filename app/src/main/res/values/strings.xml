@@ -71,4 +71,7 @@
         Yesterday:\n
          It was hard getting out of my bed without looking at my phone. I was still anxious and had  a strong urge to just open the phone and watch random videos.
     </string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>

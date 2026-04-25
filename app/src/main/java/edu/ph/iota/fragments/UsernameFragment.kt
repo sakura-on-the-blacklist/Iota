@@ -13,7 +13,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.QuerySnapshot
-import edu.ph.iota.activities.HomeActivity
+import edu.ph.iota.activities.HabitSettingActivity
 import edu.ph.iota.databinding.FragmentUsernameBinding
 import java.lang.Exception
 import kotlin.getValue
@@ -133,17 +133,17 @@ class UsernameFragment() : Fragment() {
     private fun onAddUserSuccess(
         void: Void?
     ) {
-        onNavigateHome()
+        onNavigateHabitSetting()
     }
 
-    private fun onNavigateHome() {
+    private fun onNavigateHabitSetting() {
 
         viewModel.preferenceManager.setPhoneNumber(viewModel.getPhoneNumber()!!)
 
         startActivity(
             Intent(
                 requireContext(),
-                HomeActivity::class.java
+                HabitSettingActivity::class.java
             )
         )
 

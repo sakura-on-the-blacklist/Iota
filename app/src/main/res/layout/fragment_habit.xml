@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:padding="10dp"
+    tools:context=".fragments.HabitFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <include
+                android:id="@+id/sectionIdentity"
+                layout="@layout/section_identity"/>
+            <include
+                android:id="@+id/sectionFrequency"
+                layout="@layout/section_frequency"/>
+            <include
+                android:id="@+id/sectionGoal"
+                layout="@layout/section_goal"/>
+            <include
+                android:id="@+id/sectionTime"
+                layout="@layout/section_time"/>
+            <include
+                android:id="@+id/sectionReminder"
+                layout="@layout/section_reminder"/>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
+</LinearLayout>

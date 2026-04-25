@@ -27,4 +27,9 @@ class PreferenceManager(
         return preferences.getString("phoneNumber", null)
     }
 
+    fun getUserId(): String? {
+        return preferences.getString("userId", null)
+        //might be a problem later, keep an eye
+    }
+
 }
