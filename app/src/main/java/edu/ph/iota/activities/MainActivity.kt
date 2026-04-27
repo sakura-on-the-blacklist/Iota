@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import edu.ph.iota.activities.HabitSettingActivity
+import edu.ph.iota.activities.HomeActivity
 import edu.ph.iota.databinding.ActivityMainBinding
 import edu.ph.iota.viewmodels.MainViewModel
 
@@ -56,7 +57,7 @@ class MainActivity : AppCompatActivity() {
         startActivity(
             Intent(
                 this,
-                HabitSettingActivity::class.java
+                HomeActivity::class.java
             )
         )
         finish()

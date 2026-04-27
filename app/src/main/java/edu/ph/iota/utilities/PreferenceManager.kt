@@ -27,9 +27,21 @@ class PreferenceManager(
         return preferences.getString("phoneNumber", null)
     }
 
+    fun setUserId(userId: String) {
+        preferences.edit { putString("userId", userId) }
+    }
+
     fun getUserId(): String? {
         return preferences.getString("userId", null)
         //might be a problem later, keep an eye
+    }
+
+    fun setIdentity(identity: String) {
+        preferences.edit { putString("identity", identity) }
+    }
+
+    fun getIdentity(): String? {
+        return preferences.getString("identity", null)
     }
 
 }
