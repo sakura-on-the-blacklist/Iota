@@ -32,8 +32,6 @@ class HomeFragment : Fragment() {
     private lateinit var calendarAdapter: CalendarAdapter
     private lateinit var habitAdapter: HabitAdapter
 
-    // The date the user has selected in the calendar bar.
-    // Defaults to today so the current day's habits load first.
     @RequiresApi(Build.VERSION_CODES.O)
     private var selectedDate: LocalDate = LocalDate.now()
 
@@ -67,9 +65,8 @@ class HomeFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupCalendar() {
-        val weekDays = CalendarUtils.getWeekDays()  // Mon–Sun of the current week
+        val weekDays = CalendarUtils.getWeekDays()
 
-        // Update the month/year header from the first day of the week
         binding.monthYearTV.text = weekDays.first().toMonthYear()
 
         val completedDates: Set<String> = emptySet()
@@ -97,7 +94,7 @@ class HomeFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun setupHabits() {
-        // Fix: initialize the class property 'habitAdapter' instead of creating a local variable
+
         habitAdapter = HabitAdapter(
             habits = mutableListOf(),
             streakMap = emptyMap(),

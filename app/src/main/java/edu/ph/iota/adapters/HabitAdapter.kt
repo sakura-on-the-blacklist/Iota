@@ -14,16 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 import edu.ph.iota.databinding.ItemHabitPebbleBinding
 import edu.ph.iota.models.Habit
 
-/**
- * HabitAdapter drives the pebble list on the home screen.
- *
- * Each pebble is a rounded card matching the onboarding style.
- * Hold mechanic:
- *   ACTION_DOWN  → start 3-second CountDownTimer, show progress bar
- *   Each tick    → increment LinearProgressIndicator (0 → 100)
- *   ACTION_UP    → cancel timer, animate progress bar back to 0
- *   onFinish     → haptic feedback + call onHabitLogged(habit)
- */
 class HabitAdapter(
     private val habits: MutableList<Habit>,
     private val streakMap: Map<String, Int> = emptyMap(),
@@ -36,7 +26,6 @@ class HabitAdapter(
         private const val PROGRESS_MAX     = 100
     }
 
-    // ── ViewHolder ────────────────────────────────────────────────────────────
 
     @SuppressLint("ClickableViewAccessibility")
     inner class PebbleViewHolder(
@@ -60,7 +49,6 @@ class HabitAdapter(
         @SuppressLint("ClickableViewAccessibility")
         private fun setupHoldToLog(habit: Habit) {
 
-            // The touch target is the card itself
             binding.cardView.setOnTouchListener { view, event ->
                 when (event.action) {
                     MotionEvent.ACTION_DOWN -> {
@@ -82,8 +70,6 @@ class HabitAdapter(
 
             binding.holdProgress.visibility = View.VISIBLE
             binding.holdProgress.progress   = 0
-
-            // Subtle press-in scale so the card feels tactile
             binding.cardView.animate()
                 .scaleX(0.96f)
                 .scaleY(0.96f)
@@ -115,11 +101,6 @@ class HabitAdapter(
             resetCardVisuals(animate = true)
         }
 
-        /**
-         * Resets the card to its resting state.
-         * @param animate true → drain the progress bar smoothly back to 0
-         *                false → snap instantly (after a successful log)
-         */
         private fun resetCardVisuals(animate: Boolean) {
 
             binding.cardView.animate()
@@ -149,7 +130,7 @@ class HabitAdapter(
             }
         }
 
-        /** Called by RecyclerView when this ViewHolder is recycled — always cancel the timer. */
+
         fun onRecycled() {
             holdTimer?.cancel()
             holdTimer = null
@@ -160,7 +141,6 @@ class HabitAdapter(
         }
     }
 
-    // ── Adapter overrides ─────────────────────────────────────────────────────
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PebbleViewHolder {
         val binding = ItemHabitPebbleBinding.inflate(
@@ -180,7 +160,6 @@ class HabitAdapter(
         holder.onRecycled()
     }
 
-    // ── Public helpers ────────────────────────────────────────────────────────
 
     fun updateHabits(newHabits: List<Habit>) {
         habits.clear()

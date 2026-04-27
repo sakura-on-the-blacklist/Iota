@@ -7,12 +7,7 @@ import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 import java.time.temporal.TemporalAdjusters
 
-/**
- * CalendarUtils generates the list of 7 days shown in the calendar bar
- * and provides formatting helpers used by CalendarAdapter and HomeFragment.
- *
- * All dates are LocalDate (no time, no timezone confusion).
- */
+
 object CalendarUtils {
 
 
