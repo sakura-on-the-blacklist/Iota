@@ -1,0 +1,537 @@
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+    <!--
+    THE COLOURS ARE EITHER
+    D9D9D9 for habit NOT done on the day
+    FFC34C for habit done on the day
+    @android:color/transparent to remove square and to align with the month
+    -->
+
+    <TextView
+        android:id="@+id/monthTitle"
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:fontFamily="@font/roboto_variable"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        android:gravity="left"
+        android:text="Jan"
+        android:textSize="12dp"
+        android:textStyle="bold" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week1day1"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="10dp"
+        android:backgroundTint="@android:color/transparent"
+
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/monthTitle" />
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week2day1"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/monthTitle"
+        app:layout_constraintStart_toEndOf="@id/week1day1"
+
+        android:backgroundTint="#FFC34C"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week3day1"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/monthTitle"
+        app:layout_constraintStart_toEndOf="@id/week2day1"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week4day1"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/monthTitle"
+        app:layout_constraintStart_toEndOf="@id/week3day1"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week5day1"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/monthTitle"
+        app:layout_constraintStart_toEndOf="@id/week4day1"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week6day1"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/monthTitle"
+        app:layout_constraintStart_toEndOf="@id/week5day1"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week1day2"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day1"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week2day2"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day1"
+        app:layout_constraintStart_toEndOf="@id/week1day2"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week3day2"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week2day1"
+        app:layout_constraintStart_toEndOf="@id/week2day2"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week4day2"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week3day1"
+        app:layout_constraintStart_toEndOf="@id/week3day2"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week5day2"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week4day1"
+        app:layout_constraintStart_toEndOf="@id/week4day2"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week6day2"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week5day1"
+        app:layout_constraintStart_toEndOf="@id/week5day2"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week1day3"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day2"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week2day3"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day2"
+        app:layout_constraintStart_toEndOf="@id/week1day3"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week3day3"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week2day2"
+        app:layout_constraintStart_toEndOf="@id/week2day3"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week4day3"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week3day2"
+        app:layout_constraintStart_toEndOf="@id/week3day3"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week5day3"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week4day2"
+        app:layout_constraintStart_toEndOf="@id/week4day3"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week6day3"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week5day2"
+        app:layout_constraintStart_toEndOf="@id/week5day3"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week1day4"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day3"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week2day4"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day3"
+        app:layout_constraintStart_toEndOf="@id/week1day4"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week3day4"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week2day3"
+        app:layout_constraintStart_toEndOf="@id/week2day4"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week4day4"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week3day3"
+        app:layout_constraintStart_toEndOf="@id/week3day4"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week5day4"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week4day3"
+        app:layout_constraintStart_toEndOf="@id/week4day4"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week6day4"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week5day3"
+        app:layout_constraintStart_toEndOf="@id/week5day4"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week1day5"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day4"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week2day5"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day4"
+        app:layout_constraintStart_toEndOf="@id/week1day5"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week3day5"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week2day4"
+        app:layout_constraintStart_toEndOf="@id/week2day5"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week4day5"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week3day4"
+        app:layout_constraintStart_toEndOf="@id/week3day5"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week5day5"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week4day4"
+        app:layout_constraintStart_toEndOf="@id/week4day5"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week6day5"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week5day4"
+        app:layout_constraintStart_toEndOf="@id/week5day5"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week1day6"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day5"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week2day6"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day5"
+        app:layout_constraintStart_toEndOf="@id/week1day6"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week3day6"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week2day5"
+        app:layout_constraintStart_toEndOf="@id/week2day6"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week4day6"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week3day5"
+        app:layout_constraintStart_toEndOf="@id/week3day6"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week5day6"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week4day5"
+        app:layout_constraintStart_toEndOf="@id/week4day6"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week6day6"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week5day5"
+        app:layout_constraintStart_toEndOf="@id/week5day6"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week1day7"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="0dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day6"
+        app:layout_constraintStart_toStartOf="parent"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week2day7"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week1day6"
+        app:layout_constraintStart_toEndOf="@id/week1day7"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week3day7"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week2day6"
+        app:layout_constraintStart_toEndOf="@id/week2day7"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week4day7"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week3day6"
+        app:layout_constraintStart_toEndOf="@id/week3day7"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week5day7"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week4day6"
+        app:layout_constraintStart_toEndOf="@id/week4day7"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+    <androidx.cardview.widget.CardView
+        android:id="@+id/week6day7"
+        android:layout_width="14dp"
+        android:layout_height="14dp"
+
+        android:layout_marginTop="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintTop_toBottomOf="@id/week5day6"
+        app:layout_constraintStart_toEndOf="@id/week5day7"
+
+        android:backgroundTint="#D9D9D9"
+        app:cardElevation="0dp"/>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
