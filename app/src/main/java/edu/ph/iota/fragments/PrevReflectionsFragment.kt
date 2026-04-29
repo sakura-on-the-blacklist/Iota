@@ -28,13 +28,19 @@ class PrevReflectionsFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        setupToolbar()
+        setupCloseButton()
+        setupPebbleClick()
         setupRecyclerView()
     }
 
-    private fun setupToolbar() {
-        binding.toolbar.setNavigationOnClickListener { view ->
+    private fun setupCloseButton() {
+        binding.closeButton.setOnClickListener { view: View ->
             view.findNavController().navigateUp()
+        }
+    }
+
+    private fun setupPebbleClick() {
+        binding.pebbleView.setOnClickListener { view: View ->
         }
     }
 
