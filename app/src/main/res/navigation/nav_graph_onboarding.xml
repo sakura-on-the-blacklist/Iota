@@ -32,6 +32,18 @@
         tools:layout="@layout/fragment_habit_template">
         <action
             android:id="@+id/action_habitTemplate_to_habitSettings"
-            app:destination="@id/onboardingFragment" />
+            app:destination="@id/habitSettingsActivity" />
     </fragment>
+
+    <activity
+        android:id="@+id/habitSettingsActivity"
+        android:name="edu.ph.iota.activities.HabitSettingActivity"
+        android:label="Habit Setting" />
+
+    <fragment
+        android:id="@+id/prevReflectionsFragment"
+        android:name="edu.ph.iota.fragments.PrevReflectionsFragment"
+        android:label="prev reflections"
+        tools:layout="@layout/fragment_prev_reflections" />
+
 </navigation>
