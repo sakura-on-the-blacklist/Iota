@@ -21,7 +21,8 @@ import edu.ph.iota.viewmodels.HabitProgressMonthViewModel;
 
 public class HabitProgressCardView extends AppCompatActivity {
 
-    RecyclerView ViewRecycler;
+    RecyclerView habit_progress_months;
+    TextView habitTrackingGoal, habitTrackingStartDate, habitTrackingEndNumber;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -29,8 +30,11 @@ public class HabitProgressCardView extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.fragment_habit_progress_card_view);
 
-        ViewRecycler = findViewById(R.id.habit_progress_months);
+        setupMonths();
+        setupDates();
+    }
 
+    public void setupMonths(){
         // SOME TEMPORARY DATA
         List<HabitProgressMonthViewModel> ListMonthModel = new ArrayList<>() {{
             add(new HabitProgressMonthViewModel(2, 2026, new int[]{1, 2, 3, 4, 27, 28, 29}));
@@ -41,12 +45,22 @@ public class HabitProgressCardView extends AppCompatActivity {
             add(new HabitProgressMonthViewModel(7, 2026, new int[]{1, 8, 9, 15, 16, 21, 29}));
         }};
 
-        ViewRecycler.setLayoutManager(new LinearLayoutManager(
-            this,
-            LinearLayoutManager.HORIZONTAL,
-            false
+        habit_progress_months = findViewById(R.id.habit_progress_months);
+        habit_progress_months.setLayoutManager(new LinearLayoutManager(
+                this,
+                LinearLayoutManager.HORIZONTAL,
+                false
         ));
         HabitProgressMonthAdapter adapter = new HabitProgressMonthAdapter(ListMonthModel);
-        ViewRecycler.setAdapter(adapter);
+        habit_progress_months.setAdapter(adapter);
+    }
+    public void setupDates(){
+        habitTrackingGoal = findViewById(R.id.habitTrackingGoal);
+        habitTrackingStartDate = findViewById(R.id.habitTrackingStartDate);
+        habitTrackingEndNumber = findViewById(R.id.habitTrackingEndNumber);
+
+        habitTrackingGoal.setText(R.string.habit_details_example_goal_short);
+        habitTrackingStartDate.setText("December 5, 2025");
+        habitTrackingEndNumber.setText("35");
     }
 }
