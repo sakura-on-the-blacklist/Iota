@@ -533,6 +533,4 @@
 
         android:backgroundTint="@color/habit_n"
         app:cardElevation="0dp"/>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

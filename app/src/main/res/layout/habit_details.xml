@@ -90,6 +90,11 @@
             android:textColor="#753B00"
 
             android:text="Daily at 6:00 AM"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="250dp"
