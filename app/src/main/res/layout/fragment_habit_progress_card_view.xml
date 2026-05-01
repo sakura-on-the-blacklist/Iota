@@ -17,7 +17,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:padding="20dp">
-
         <TextView
             android:id="@+id/habitTrackingGoal"
 
@@ -33,9 +32,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
         <TextView
-            android:id="@+id/habitTrackingStartDate"
+            android:id="@+id/habitTrackingText"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,36 +44,138 @@
 
             android:fontFamily="@font/lusitana"
             android:gravity="left"
-            android:text="Since Apr 09, 2026"
+            android:text="Since"
             android:textSize="15dp" />
+        <TextView
+            android:id="@+id/habitTrackingStartDate"
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="5dp"
+            app:layout_constraintStart_toEndOf="@+id/habitTrackingText"
+            app:layout_constraintTop_toBottomOf="@id/habitTrackingGoal"
+
+            android:fontFamily="@font/lusitana"
+            android:gravity="left"
+            android:text="Apr 09, 2026"
+            android:textSize="15dp" />
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/habit_progress_months"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:layout_marginTop="10dp"
-            app:layout_constraintStart_toEndOf="@+id/day_indicator"
+            app:layout_constraintStart_toEndOf="@+id/day_indicator_01"
             app:layout_constraintTop_toBottomOf="@+id/habitTrackingStartDate" />
-
         <TextView
-            android:id="@+id/day_indicator"
+            android:id="@+id/day_indicator_01"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="22dp"
             android:fontFamily="@font/roboto_variable"
             android:gravity="left"
 
-            android:text="M"
+            android:text="Mon"
             android:textStyle="bold"
-            android:textSize="15dp"
+            android:textSize="12dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/habit_progress_months" />
-
         <TextView
-            android:id="@+id/habitTrackingEndCountdown"
+            android:id="@+id/day_indicator_02"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_variable"
+            android:gravity="left"
+
+            android:text="Tues"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_indicator_01" />
+        <TextView
+            android:id="@+id/day_indicator_03"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_variable"
+            android:gravity="left"
+
+            android:text="Wed"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_indicator_02" />
+        <TextView
+            android:id="@+id/day_indicator_04"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_variable"
+            android:gravity="left"
+
+            android:text="Thu"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_indicator_03" />
+        <TextView
+            android:id="@+id/day_indicator_05"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_variable"
+            android:gravity="left"
+
+            android:text="Fri"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_indicator_04" />
+        <TextView
+            android:id="@+id/day_indicator_06"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_variable"
+            android:gravity="left"
+
+            android:text="Sat"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_indicator_05" />
+        <TextView
+            android:id="@+id/day_indicator_07"
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginTop="3dp"
+            android:fontFamily="@font/roboto_variable"
+            android:gravity="left"
+
+            android:text="Sun"
+            android:textStyle="bold"
+            android:textSize="12dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/day_indicator_06" />
+        <TextView
+            android:id="@+id/habitTrackingEndNumber"
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -84,11 +184,24 @@
 
             android:fontFamily="@font/lusitana"
             android:gravity="left"
-            android:text="65 days until the end"
+            android:text="65"
             android:textSize="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/habit_progress_months" />
+        <TextView
 
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="5dp"
+
+            android:fontFamily="@font/lusitana"
+            android:gravity="left"
+            android:text="days until the end"
+            android:textSize="15dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/habitTrackingEndNumber"
+            app:layout_constraintTop_toTopOf="@+id/habitTrackingEndNumber" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>
