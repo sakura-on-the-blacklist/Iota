@@ -1,25 +1,21 @@
 package edu.ph.iota.activities;
 
-import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.cardview.widget.CardView;
-import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import edu.ph.iota.R;
 import edu.ph.iota.adapters.HabitProgressMonthAdapter;
 import edu.ph.iota.viewmodels.HabitProgressMonthViewModel;
 
-public class HabitProgressCardView extends AppCompatActivity {
+public class test_HabitProgressCardView extends AppCompatActivity {
 
     RecyclerView habit_progress_months;
     TextView habitTrackingGoal, habitTrackingStartDate, habitTrackingEndNumber;
@@ -28,7 +24,7 @@ public class HabitProgressCardView extends AppCompatActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.fragment_habit_progress_card_view);
+        setContentView(R.layout.fragment_habit_progress_card);
 
         setupMonths();
         setupDates();

@@ -92,6 +92,7 @@
             android:text="Daily at 6:00 AM"/>
 
         <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/habit_progress_card"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
