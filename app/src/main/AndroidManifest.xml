@@ -11,6 +11,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Iota" >
         <activity
+            android:name=".activities.LogoutActivity"
+            android:exported="false" />
+        <activity
             android:name=".activities.HabitSettingActivity"
             android:exported="false" />
         <activity

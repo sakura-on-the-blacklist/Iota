@@ -7,16 +7,25 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:padding="20dp"
-    tools:context=".activities.HomeActivity">
-    <TextView
+    tools:context=".activities.HomeActivity"
+    android:background="@color/cream">
+    <FrameLayout
+        android:id="@+id/fragment_container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+    </FrameLayout>
+    <com.google.android.material.bottomnavigation.BottomNavigationView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="whasup"/>
-    <Button
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Logout"
-        android:id="@+id/logoutbtn"/>
+        android:layout_gravity="bottom"
+        android:id="@+id/bottom_navigation"
+        android:background="@color/cream"
+        app:menu="@menu/bottom_nav_menu"
+        />
+
+
 
 
 </LinearLayout>

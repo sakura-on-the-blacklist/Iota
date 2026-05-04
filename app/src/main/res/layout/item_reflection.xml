@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    app:cardCornerRadius="16dp"
+    app:cardBackgroundColor="@color/darkgray"
+    app:cardElevation="4dp"
+    app:strokeWidth="0dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/textReflectionContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="i wanted to open my phone just to check the notifications... but i decided to wash my face anyway! it was hard but that felt great"
+            android:textSize="16sp"
+            android:textColor="@color/white"
+            android:fontFamily="@font/lusitana"
+            android:lineSpacingExtra="4dp" />
+
+        <TextView
+            android:id="@+id/textReflectionDate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="April 1, 2026"
+            android:textSize="14sp"
+            android:textColor="@color/lightgray2"
+            android:fontFamily="@font/inter"
+            android:layout_marginTop="12dp"
+            android:gravity="end" />
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

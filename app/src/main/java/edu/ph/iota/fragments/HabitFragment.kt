@@ -45,16 +45,32 @@ class HabitFragment : Fragment(){
     //identity section
     private fun setupIdentitySection() {
 
+        val savedIdentity = viewModel.preferenceManager.getIdentity()
+
+        if (savedIdentity != null) {
+          //fix identify after the user has decided once
+            binding.sectionIdentity.editTextIdentity.setText(savedIdentity)
+
+
+            binding.sectionIdentity.editTextIdentity.isEnabled = false
+            binding.sectionIdentity.editTextIdentity.alpha = 0.5f
+
+            viewModel.setIdentity(savedIdentity)
+
+        } else {
+
+            binding.sectionIdentity.editTextIdentity.addTextChangedListener(
+                onAfterChanged { viewModel.setIdentity(it) }
+            )
+        }
+
+        // Habit name and location are always editable
         binding.sectionIdentity.editTextHabit.addTextChangedListener(
             onAfterChanged { viewModel.setName(it) }
         )
 
         binding.sectionIdentity.editTextLocation.addTextChangedListener(
             onAfterChanged { viewModel.setLocation(it) }
-        )
-
-        binding.sectionIdentity.editTextIdentity.addTextChangedListener(
-            onAfterChanged { viewModel.setIdentity(it) }
         )
     }
 

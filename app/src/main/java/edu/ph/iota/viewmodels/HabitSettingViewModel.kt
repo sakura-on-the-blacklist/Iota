@@ -17,11 +17,16 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
     //identity setting section
     private val _habitname     = MutableLiveData("")
     private val _location = MutableLiveData("")
-    private val _identity = MutableLiveData("")
+    private val _identity = MutableLiveData(preferenceManager.getIdentity() ?: "")
+    val identity: LiveData<String> = _identity
 
     fun setName(value: String)     { _habitname.value = value }
     fun setLocation(value: String) { _location.value = value }
-    fun setIdentity(value: String) { _identity.value = value }
+    fun setIdentity(value: String) { 
+        if (preferenceManager.getIdentity() == null) {
+            _identity.value = value 
+        }
+    }
 
     //frequency section
     private val _frequency     = MutableLiveData("custom")
@@ -131,6 +136,12 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
                     onFailure("You can only have 6 habits per identity.")
                     return@getHabitCountForIdentity
                 }
+                
+                // Save identity to preferences if not already set
+                if (preferenceManager.getIdentity() == null) {
+                    preferenceManager.setIdentity(identity)
+                }
+                
                 writeHabit(userId, count, onSuccess, onFailure)
             },
             onError = { e ->
@@ -163,16 +174,19 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
 
         habitRepository.createHabit(habit)
             .addOnSuccessListener {
+                if (preferenceManager.getIdentity() == null) {
+                    preferenceManager.setIdentity(_identity.value ?: "")
+                }
+
                 _uiState.value = UiState.Success
                 onSuccess()
             }
             .addOnFailureListener { e ->
-                _uiState.value = UiState.Error(e.message ?: "Failed to save habit.")
-                onFailure(e.message ?: "Failed to save habit.")
+                val msg = e.message ?: "Failed to save habit."
+                _uiState.value = UiState.Error(msg)
+                onFailure(msg)
             }
     }
 
 
 }
-
-

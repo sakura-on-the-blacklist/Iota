@@ -10,4 +10,4 @@ local.properties
 .idea/*
 .gradle*
 gradle/*
-!gradle/ibs.versions.toml
+!gradle/libs.versions.toml

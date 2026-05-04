@@ -1,5 +1,6 @@
 package edu.ph.iota.activities
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.activity.enableEdgeToEdge
@@ -30,7 +31,7 @@ class HabitSettingActivity : AppCompatActivity() {
         loadFragment()
         setViews()
         setObservers()
-        }
+    }
 
     private fun loadFragment() {
         supportFragmentManager.beginTransaction()
@@ -59,7 +60,7 @@ class HabitSettingActivity : AppCompatActivity() {
             when (state){
                 is HabitSettingViewModel.UiState.Idle    -> {  }
                 is HabitSettingViewModel.UiState.Loading ->{
-//                    binding.progressBar.visibility = View.VISIBLE
+//
                     binding.continueButton.isEnabled = false
                 }
                 is HabitSettingViewModel.UiState.Error->{
@@ -82,6 +83,11 @@ class HabitSettingActivity : AppCompatActivity() {
 
     private fun onSaveSuccess(){
         setResult(RESULT_OK)
+        
+        // Navigate to HomeActivity
+        val intent = Intent(this, HomeActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+        startActivity(intent)
         finish()
     }
 
