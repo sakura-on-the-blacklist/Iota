@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="330dp"
+    android:layout_height="330dp"
+    android:layout_gravity="center_horizontal"
+    >
+
+    <!-- ── Pebble card ─────────────────────────────────────────────────────── -->
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:cardCornerRadius="70dp"
+        app:cardBackgroundColor="@color/white"
+        app:strokeWidth="0dp"
+        app:cardUseCompatPadding="true"
+        app:cardElevation="5dp">
+
+        <FrameLayout
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:padding="28dp"
+                android:paddingBottom="38dp"
+                android:gravity="center">
+
+                <TextView
+                    android:id="@+id/tvHabitName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Run every morning"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkbrown"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lusitana"
+                    android:layout_marginTop="6dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"/>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="so that I can become"
+                    android:textSize="20sp"
+                    android:textColor="@color/gray"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lusitana"
+                    android:layout_marginTop="14dp"/>
+
+                <TextView
+                    android:id="@+id/tvIdentity"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="A healthy person"
+                    android:textSize="28sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/darkbrown"
+                    android:textAlignment="center"
+                    android:fontFamily="@font/lusitana"
+                    android:layout_marginTop="6dp"
+                    android:maxLines="2"
+                    android:ellipsize="end"/>
+
+            </LinearLayout>
+
+            <!--
+                Hold-progress bar — sits at the very bottom of the card.
+                Invisible until the user presses and holds the card.
+                Fills left-to-right over 3 seconds.
+                trackColor is transparent so only the filled portion shows.
+            -->
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/holdProgress"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:layout_gravity="bottom"
+                android:max="100"
+                android:progress="0"
+                android:visibility="invisible"
+                app:trackColor="@android:color/transparent"
+                app:indicatorColor="@color/brown"
+                app:trackCornerRadius="0dp"/>
+
+        </FrameLayout>
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <!-- ── Decorative pebble circle — top-right, overlaps card edge ───────── -->
+    <FrameLayout
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:background="@drawable/pebble_background"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:elevation="1dp"
+        android:translationZ="10dp"
+        android:outlineProvider="none">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/baseline_local_fire_department_24"
+            android:scaleType="centerCrop"
+            android:layout_gravity="top|center"/>
+
+        <TextView
+            android:id="@+id/tvStreak"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            android:textStyle="bold"
+            android:textSize="20dp"
+            android:textColor="#533F3F"
+            android:layout_marginBottom="10dp"
+            android:layout_gravity="center|bottom"/>
+
+    </FrameLayout>
+
+</FrameLayout>

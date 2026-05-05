@@ -13,7 +13,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.QuerySnapshot
 import edu.ph.iota.R
-import edu.ph.iota.activities.HomeActivity
+import edu.ph.iota.activities.HabitSettingActivity
 import edu.ph.iota.databinding.FragmentOneTimePasswordBinding
 import edu.ph.iota.viewmodels.MainViewModel
 
@@ -122,7 +122,7 @@ class OneTimePasswordFragment() : Fragment() {
         if (snapshots.isEmpty) {
             onNavigateName()
         } else {
-            onNavigateHome()
+            onNavigateHabitSetting()
         }
     }
 
@@ -130,14 +130,14 @@ class OneTimePasswordFragment() : Fragment() {
         findNavController().navigate(R.id.from_one_time_password_to_name)
     }
 
-    private fun onNavigateHome() {
+    private fun onNavigateHabitSetting() {
 
         viewModel.preferenceManager.setPhoneNumber(viewModel.getPhoneNumber()!!)
 
         startActivity(
             Intent(
                 requireContext(),
-                HomeActivity::class.java
+                HabitSettingActivity::class.java
             )
         )
 
