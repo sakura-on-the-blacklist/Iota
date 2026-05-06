@@ -1,6 +1,8 @@
 package edu.ph.iota.fragments
 
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import androidx.fragment.app.Fragment
@@ -16,12 +18,27 @@ import edu.ph.iota.R
 import edu.ph.iota.activities.HabitSettingActivity
 import edu.ph.iota.databinding.FragmentHabitBinding
 import edu.ph.iota.viewmodels.HabitSettingViewModel
+import android.os.Handler
 
 //parent: HabitSettingActivity
 
 class HabitFragment : Fragment(){
     private lateinit var binding: FragmentHabitBinding
     private val viewModel: HabitSettingViewModel by activityViewModels ()
+
+    private val units = listOf(
+        "times", "minutes", "hours", "km", "steps",
+        "glasses", "pages", "kg", "calories", "reps"
+    )
+
+    private val debounceHandler  = Handler(Looper.getMainLooper())
+    private val debounceRunnable = Runnable { viewModel.analyzeHabit() }
+    private val DEBOUNCE_MS      = 1500L
+
+    private fun scheduleAiCheck() {
+        debounceHandler.removeCallbacks(debounceRunnable)
+        debounceHandler.postDelayed(debounceRunnable, DEBOUNCE_MS)
+    }
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,6 +56,12 @@ class HabitFragment : Fragment(){
         setupGoalSection()
         setupTimeSection()
         setupReminderSection()
+        observeAiState()
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        debounceHandler.removeCallbacks(debounceRunnable)
     }
 
 
@@ -50,8 +73,6 @@ class HabitFragment : Fragment(){
         if (savedIdentity != null) {
           //fix identify after the user has decided once
             binding.sectionIdentity.editTextIdentity.setText(savedIdentity)
-
-
             binding.sectionIdentity.editTextIdentity.isEnabled = false
             binding.sectionIdentity.editTextIdentity.alpha = 0.5f
 
@@ -60,17 +81,26 @@ class HabitFragment : Fragment(){
         } else {
 
             binding.sectionIdentity.editTextIdentity.addTextChangedListener(
-                onAfterChanged { viewModel.setIdentity(it) }
+                onAfterChanged {
+                    viewModel.setIdentity(it)
+                    scheduleAiCheck()
+                }
             )
         }
 
         // Habit name and location are always editable
         binding.sectionIdentity.editTextHabit.addTextChangedListener(
-            onAfterChanged { viewModel.setName(it) }
+            onAfterChanged {
+                viewModel.setName(it)
+                scheduleAiCheck()
+            }
         )
 
         binding.sectionIdentity.editTextLocation.addTextChangedListener(
-            onAfterChanged { viewModel.setLocation(it) }
+            onAfterChanged {
+                viewModel.setLocation(it)
+                scheduleAiCheck()
+            }
         )
     }
 
@@ -87,7 +117,7 @@ class HabitFragment : Fragment(){
             binding.sectionFrequency.chipSat to "SAT"
         )
 
-        chipDayMap.forEach { (chip, day) ->
+        chipDayMap.forEach { (chip, _) ->
             chip.setOnCheckedChangeListener { _, _ ->
                 val selectedDays = chipDayMap
                     .filter { (c, _) -> c.isChecked }
@@ -107,9 +137,6 @@ class HabitFragment : Fragment(){
 
     //goal
     private fun setupGoalSection() {
-
-        val units = listOf("times", "minutes", "hours", "km", "steps",
-            "glasses", "pages", "kg", "calories", "reps")
 
         val adapter = ArrayAdapter(
             requireContext(),
@@ -214,6 +241,122 @@ class HabitFragment : Fragment(){
                 viewModel.setReminderTime(reminderCodes[0]) // "AT_TIME"
             }
         }
+    }
+
+    ///////AI PART////////
+    private fun observeAiState() {
+        viewModel.aiState.observe(viewLifecycleOwner) { state ->
+            val id = binding.sectionIdentity
+
+            when (state) {
+
+                is HabitSettingViewModel.AiState.Idle -> {
+                    id.aiLoadingRow.visibility   = View.GONE
+                    id.aiFeedbackCard.visibility = View.GONE
+                }
+
+                is HabitSettingViewModel.AiState.Checking -> {
+                    id.aiLoadingRow.visibility   = View.VISIBLE
+                    id.aiFeedbackCard.visibility = View.GONE
+                }
+
+                is HabitSettingViewModel.AiState.Invalid -> {
+                    id.aiLoadingRow.visibility = View.GONE
+                    showFeedbackCard(
+                        icon      = "⚠️",
+                        reason    = state.reason,
+                        bgColor   = "#FFEBEE",
+                        suggestion = state.suggestion
+                    )
+                }
+
+                is HabitSettingViewModel.AiState.Suggested -> {
+                    id.aiLoadingRow.visibility = View.GONE
+                    showFeedbackCard(
+                        icon      = "✅",
+                        reason    = state.reason,
+                        bgColor   = "#E8F5E9",
+                        suggestion = ""
+                    )
+                    applyAiSuggestions(state)
+                }
+
+                is HabitSettingViewModel.AiState.Error -> {
+                    id.aiLoadingRow.visibility = View.GONE
+                    showFeedbackCard(
+                        icon      = "ℹ️",
+                        reason    = state.message,
+                        bgColor   = "#FFF8E1",
+                        suggestion = ""
+                    )
+                }
+            }
+
+            viewModel.checkFormReady()
+        }
+    }
+
+    private fun showFeedbackCard(
+        icon: String, reason: String, bgColor: String, suggestion: String
+    ) {
+        val id = binding.sectionIdentity
+        id.aiFeedbackCard.visibility = View.VISIBLE
+        id.aiFeedbackCard.setCardBackgroundColor(Color.parseColor(bgColor))
+        id.tvAiIcon.text   = icon
+        id.tvAiReason.text = reason
+        if (suggestion.isNotBlank()) {
+            id.tvAiSuggestion.visibility = View.VISIBLE
+            id.tvAiSuggestion.text       = "Try: \"$suggestion\""
+        } else {
+            id.tvAiSuggestion.visibility = View.GONE
+        }
+    }
+
+    // ── Apply AI auto-fill ────────────────────────────────────────────────────
+
+    private fun applyAiSuggestions(state: HabitSettingViewModel.AiState.Suggested) {
+
+        // Frequency chips — detach listeners first, set state, re-attach
+        val chipDayMap = mapOf(
+            "SUN" to binding.sectionFrequency.chipSun,
+            "MON" to binding.sectionFrequency.chipMon,
+            "TUE" to binding.sectionFrequency.chipTue,
+            "WED" to binding.sectionFrequency.chipWed,
+            "THU" to binding.sectionFrequency.chipThu,
+            "FRI" to binding.sectionFrequency.chipFri,
+            "SAT" to binding.sectionFrequency.chipSat
+        )
+
+        chipDayMap.values.forEach { it.setOnCheckedChangeListener(null) }
+        chipDayMap.forEach { (day, chip) -> chip.isChecked = state.frequencyDays.contains(day) }
+        setupFrequencySection()  // re-attach listeners
+
+        // Goal value
+        if (state.goalValue > 0) {
+            val text = if (state.goalValue % 1.0 == 0.0)
+                state.goalValue.toInt().toString()
+            else state.goalValue.toString()
+            binding.sectionGoal.editTextNumberDecimal.setText(text)
+        }
+
+        // Goal unit spinner
+        val unitIndex = units.indexOf(state.goalUnit)
+        if (unitIndex >= 0) binding.sectionGoal.spinner.setSelection(unitIndex)
+
+        // Start time
+        if (state.startTime.isNotBlank()) {
+            binding.sectionTime.habitTimeInput.setText(formatTo12Hour(state.startTime))
+            viewModel.setStartTime(state.startTime)
+        }
+    }
+
+    private fun formatTo12Hour(time24: String): String {
+        return try {
+            val (h, m) = time24.split(":").map { it.toInt() }
+            val amPm   = if (h < 12) "AM" else "PM"
+            val h12    = when { h == 0 -> 12; h > 12 -> h - 12; else -> h }
+            String.format("%d:%02d %s", h12, m, amPm)
+        } catch (e: Exception) { time24 }
     }
 
 
