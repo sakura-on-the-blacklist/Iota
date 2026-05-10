@@ -1,9 +1,13 @@
-package ph.edu.mobdevfinal;
+package edu.ph.iota.activities;
 
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
+
+import edu.ph.iota.HexagonBadgeView;
+import edu.ph.iota.R;
+
 
 public class HabitDetailsActivity extends AppCompatActivity {
     @Override

@@ -9,16 +9,15 @@ class HabitRepository(
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 ) {
 
-    private val habitsCollection get() = firestore.collection("habits")
+    val habitsCollection get() = firestore.collection("habits")
 
     fun createHabit(habit: Habit): Task<Void> {
-        val docRef = habitsCollection.document()
-        val habitWithId = habit.copy(habitId = docRef.id)
+        val docRef = if (habit.habitId.isEmpty()) habitsCollection.document() else habitsCollection.document(habit.habitId)
+        val habitWithId = if (habit.habitId.isEmpty()) habit.copy(habitId = docRef.id) else habit
         return docRef.set(habitWithId.toMap())
     }
 
     fun getHabits(userId: String): Task<QuerySnapshot> {
-        // Removed orderBy to avoid requiring a composite index in Firestore
         return habitsCollection
             .whereEqualTo("userId", userId)
             .whereEqualTo("isActive", true)
