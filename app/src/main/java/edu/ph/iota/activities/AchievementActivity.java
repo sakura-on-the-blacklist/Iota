@@ -28,7 +28,7 @@ public class AchievementActivity extends AppCompatActivity {
 
         Button btnViewDetails = findViewById(R.id.view_habit_button);
         btnViewDetails.setOnClickListener(v -> {
-            Intent intent = new Intent(AchievementActivity.this, HabitDetailsActivity.class);
+            Intent intent = new Intent(AchievementActivity.this, HabitDetails.class);
             startActivity(intent);
         });
     }

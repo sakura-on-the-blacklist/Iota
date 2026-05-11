@@ -61,6 +61,7 @@ class HomeFragment : Fragment() {
         binding.profileBtn.setOnClickListener {
             startActivity(Intent(requireContext(), LogoutActivity::class.java))
         }
+
     }
 
     @RequiresApi(Build.VERSION_CODES.O)
