@@ -1,0 +1,11 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.Mobdev_Pomodoro" parent="Theme.Material3.DayNight.NoActionBar">
+    </style>
+
+    <style name="Theme.Mobdev_Pomodoro" parent="Base.Theme.Mobdev_Pomodoro" />
+
+    <style name="WhiteNumberPicker">
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <item name="colorControlNormal">#FFFFFF</item>
+    </style>
+</resources>
