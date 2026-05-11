@@ -5,16 +5,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
+import com.google.android.material.snackbar.Snackbar
 import edu.ph.iota.R
 import edu.ph.iota.adapters.ReflectionsAdapter
 import edu.ph.iota.databinding.FragmentPrevReflectionsBinding
-import edu.ph.iota.models.Reflection
+import edu.ph.iota.viewmodels.ReflectionViewModel
 
 class PrevReflectionsFragment : Fragment() {
 
     private var _binding: FragmentPrevReflectionsBinding? = null
     private val binding get() = _binding!!
+
+    private val viewModel: ReflectionViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -31,6 +35,10 @@ class PrevReflectionsFragment : Fragment() {
         setupCloseButton()
         setupPebbleClick()
         setupRecyclerView()
+        setupObservers()
+
+        // Load reflections from Firebase
+        viewModel.loadAllReflections()
     }
 
     private fun setupCloseButton() {
@@ -41,38 +49,32 @@ class PrevReflectionsFragment : Fragment() {
 
     private fun setupPebbleClick() {
         binding.pebbleView.setOnClickListener { view: View ->
+            // Optional: Navigate to add reflection screen
+            // view.findNavController().navigate(R.id.action_to_addReflection)
         }
     }
 
     private fun setupRecyclerView() {
-        val reflections = getSampleReflections()
-        val adapter = ReflectionsAdapter(reflections)
+        val adapter = ReflectionsAdapter(emptyList())
         binding.recyclerViewReflections.adapter = adapter
     }
 
-    private fun getSampleReflections(): List<Reflection> {
-        return listOf(
-            Reflection(
-                id = 1,
-                content = "i wanted to open my phone just to check the notifications... but i decided to wash my face anyway! it was hard but that felt great",
-                date = "April 1, 2026"
-            ),
-            Reflection(
-                id = 2,
-                content = "i wanted to open my phone just to check the notifications... but i decided to wash my face anyway! it was hard but that felt great",
-                date = "April 2, 2026"
-            ),
-            Reflection(
-                id = 3,
-                content = "i wanted to open my phone just to check the notifications... but i decided to wash my face anyway! it was hard but that felt great",
-                date = "April 3, 2026"
-            ),
-            Reflection(
-                id = 4,
-                content = "its getting kinda easier now to go straight wash my face without looking at my phone first.",
-                date = "April 4, 2026"
-            )
-        )
+    private fun setupObservers() {
+        viewModel.reflections.observe(viewLifecycleOwner) { reflections ->
+            val adapter = ReflectionsAdapter(reflections)
+            binding.recyclerViewReflections.adapter = adapter
+        }
+
+        viewModel.isLoading.observe(viewLifecycleOwner) { isLoading ->
+            // Show/hide loading indicator if you have one
+            // binding.progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+        }
+
+        viewModel.errorMessage.observe(viewLifecycleOwner) { message ->
+            if (!message.isNullOrBlank()) {
+                Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+            }
+        }
     }
 
     override fun onDestroyView() {
