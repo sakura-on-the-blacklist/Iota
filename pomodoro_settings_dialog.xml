@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="350dp"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center"
+    app:cardBackgroundColor="#4C463D"
+    app:cardCornerRadius="32dp"
+    app:cardElevation="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="24dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="24dp">
+
+            <TextView
+                android:id="@+id/pomodoro_settings_close"
+                android:layout_width="44dp"
+                android:layout_height="44dp"
+                android:background="@drawable/pomodoro_circle_outline"
+                android:fontFamily="sans-serif-medium"
+                android:gravity="center"
+                android:text="X"
+                android:textColor="#FFFFFF"
+                android:textSize="18sp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerInParent="true"
+                android:background="@drawable/pomodoro_pill_bg"
+                android:fontFamily="sans-serif-light"
+                android:paddingHorizontal="32dp"
+                android:paddingVertical="10dp"
+                android:text="DURATION"
+                android:textColor="#4C463D"
+                android:textSize="16sp" />
+        </RelativeLayout>
+
+        <ph.edu.mobdev_pomodoro.PomodoroSettingRow
+            android:id="@+id/row_focus"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:pomodoro_settingTitle="Focus Session"
+            app:pomodoro_settingValue="25" />
+
+        <ph.edu.mobdev_pomodoro.PomodoroSettingRow
+            android:id="@+id/row_short"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:pomodoro_settingTitle="Short break"
+            app:pomodoro_settingValue="05" />
+
+        <ph.edu.mobdev_pomodoro.PomodoroSettingRow
+            android:id="@+id/row_long"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:pomodoro_settingTitle="Long break"
+            app:pomodoro_settingValue="10" />
+
+        <ph.edu.mobdev_pomodoro.PomodoroSettingRow
+            android:id="@+id/row_long_after"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:pomodoro_settingTitle="Long break after"
+            app:pomodoro_settingValue="02" />
+
+    </LinearLayout>
+</androidx.cardview.widget.CardView>
