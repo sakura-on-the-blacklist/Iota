@@ -24,7 +24,6 @@
 
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_vertical"
             android:fontFamily="@font/lusitana"
             android:gravity="start"
             android:text="@string/habit_details_example_goal_short"
@@ -34,7 +33,9 @@
             android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+
+            android:layout_marginLeft="5dp"/>
         <TextView
             android:id="@+id/habitTrackingText"
 
