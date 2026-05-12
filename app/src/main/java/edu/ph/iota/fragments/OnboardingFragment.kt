@@ -40,10 +40,6 @@ class OnboardingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.btnContinue.setOnClickListener {
-            showCircularOrangeTransition()
-        }
-
         setupPebbleLongPress()
     }
 
