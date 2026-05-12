@@ -1,7 +1,6 @@
 package edu.ph.iota.activities;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,7 +15,7 @@ import edu.ph.iota.adapters.HabitProgressCardAdapter;
 import edu.ph.iota.viewmodels.HabitProgressCardViewModel;
 import edu.ph.iota.viewmodels.HabitProgressMonthViewModel;
 
-public class HabitDetails extends AppCompatActivity {
+public class HabitDetailsActivity extends AppCompatActivity {
 
     RecyclerView habit_progress_card;
     //TextView habitTrackingGoal, habitTrackingStartDate, habitTrackingEndNumber;
