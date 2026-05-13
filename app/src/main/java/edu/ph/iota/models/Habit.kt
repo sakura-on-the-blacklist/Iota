@@ -28,7 +28,23 @@ data class Habit (
 
     //reminder section
     val reminderEnabled: Boolean = false,
-    val reminderTime: String = ""
+    val reminderTime: String = "",
+
+    //streak
+    // Computed from HabitLog subcollection, cached here for fast reads.
+    // Written back by HabitLogRepository.logHabit() every time a log is created.
+
+    /** Consecutive scheduled days logged without missing one. */
+    val currentStreak: Int = 0,
+
+    /** Highest streak ever reached for this habit. */
+    val longestStreak: Int = 0,
+
+    /** "YYYY-MM-DD" of the last logged day. Used to detect missed days. */
+    val lastLoggedDate: String = "",
+
+    /** Running total of all-time log entries for this habit. */
+    val totalLogs: Int = 0
 
 ){
     fun toMap(): Map<String, Any?> = mapOf(
@@ -46,6 +62,10 @@ data class Habit (
         "goalUnit"        to goalUnit,
         "startTime"       to startTime,
         "reminderEnabled" to reminderEnabled,
-        "reminderTime"    to reminderTime
+        "reminderTime"    to reminderTime,
+        "currentStreak"   to currentStreak,
+        "longestStreak"   to longestStreak,
+        "lastLoggedDate"  to lastLoggedDate,
+        "totalLogs"       to totalLogs
     )
 }
