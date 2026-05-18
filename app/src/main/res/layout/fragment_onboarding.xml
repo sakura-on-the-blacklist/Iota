@@ -134,16 +134,6 @@
         android:orientation="vertical"
         android:layout_marginBottom="32dp">
 
-        <Button
-            android:id="@+id/btnContinue"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/button_continue"
-            android:backgroundTint="@color/brown"
-            android:textColor="@color/white"
-            android:padding="16dp"
-            android:fontFamily="@font/inter" />
-
     </LinearLayout>
 
 </LinearLayout>
