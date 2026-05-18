@@ -6,7 +6,7 @@
     android:orientation="vertical"
     android:padding="8dp">
 
-    <ph.edu.mobdevfinal.HexagonBadgeView
+    <edu.ph.iota.HexagonBadgeView
         android:id="@+id/badge_view"
         android:layout_width="80dp"
         android:layout_height="80dp" />

@@ -4,38 +4,51 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
+import com.google.firebase.functions.FirebaseFunctions
 import edu.ph.iota.models.Habit
 import edu.ph.iota.repositories.HabitRepository
 import edu.ph.iota.utilities.PreferenceManager
+import edu.ph.iota.utilities.ReminderManager
 
 class HabitSettingViewModel (application: Application) : AndroidViewModel(application)
 {
     val habitRepository = HabitRepository()
-
     val preferenceManager = PreferenceManager(application)
+    private val reminderManager = ReminderManager(application)
+    private val functions = FirebaseFunctions.getInstance()
 
-    //identity setting section
     private val _habitname     = MutableLiveData("")
     private val _location = MutableLiveData("")
     private val _identity = MutableLiveData(preferenceManager.getIdentity() ?: "")
     val identity: LiveData<String> = _identity
 
-    fun setName(value: String)     { _habitname.value = value }
-    fun setLocation(value: String) { _location.value = value }
-    fun setIdentity(value: String) { 
+    fun setName(value: String)     {
+        _habitname.value = value
+        checkFormReady()
+    }
+    fun setLocation(value: String) {
+        _location.value = value
+        checkFormReady()
+    }
+    fun setIdentity(value: String) {
         if (preferenceManager.getIdentity() == null) {
-            _identity.value = value 
+            _identity.value = value
+            checkFormReady()
         }
     }
 
-    //frequency section
     private val _frequency     = MutableLiveData("custom")
     private val _frequencyDays = MutableLiveData<List<String>>(emptyList())
 
-    fun setFrequency(value: String)          { _frequency.value = value }
-    fun setFrequencyDays(days: List<String>) { _frequencyDays.value = days }
+    fun setFrequency(value: String)          {
+        _frequency.value = value
+        checkFormReady()
+    }
+    fun setFrequencyDays(days: List<String>) {
+        _frequencyDays.value = days
+        checkFormReady()
+    }
 
-    //goal section
     private val _goalValue = MutableLiveData(1.0)
     val goalValue: LiveData<Double> = _goalValue
 
@@ -44,21 +57,22 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
 
     fun setGoalValue(value: Double) {
         _goalValue.value = value
+        checkFormReady()
     }
 
     fun setGoalUnit(unit: String) {
         _goalUnit.value = listOf(unit)
+        checkFormReady()
     }
 
-    //time section
     private val _startTime = MutableLiveData("")
     val startTime: LiveData<String> = _startTime
 
     fun setStartTime(value: String) {
         _startTime.value = value
+        checkFormReady()
     }
 
-    //reminder section
     private val _reminderEnabled = MutableLiveData(false)
     val reminderEnabled: LiveData<Boolean> = _reminderEnabled
 
@@ -66,14 +80,92 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
     val reminderTime: LiveData<String> = _reminderTime
     fun setReminderEnabled(enabled: Boolean) {
         _reminderEnabled.value = enabled
-        if (!enabled) _reminderTime.value = "" // clear time when turned off
+        if (!enabled) _reminderTime.value = ""
+        checkFormReady()
     }
 
     fun setReminderTime(time: String) {
         _reminderTime.value = time
+        checkFormReady()
     }
 
-    //UI
+    sealed class AiState {
+        object Idle : AiState()
+        object Checking : AiState()
+        data class Invalid(val reason: String, val suggestion: String) : AiState()
+        data class Suggested(
+            val frequencyDays: List<String>,
+            val goalValue: Double,
+            val goalUnit: String,
+            val startTime: String,
+            val reason: String
+        ) : AiState()
+        data class Error(val message: String) : AiState()
+    }
+
+    private val _aiState = MutableLiveData<AiState>(AiState.Idle)
+    val aiState: LiveData<AiState> = _aiState
+
+    fun analyzeHabit() {
+        val habit = _habitname.value?.trim().orEmpty()
+        val location = this._location.value?.trim()
+        val identity = this.identity.value?.trim().orEmpty()
+
+        if (habit.isBlank() || identity.isBlank()) {
+            _aiState.value = AiState.Idle
+            return
+        }
+
+        _aiState.value = AiState.Checking
+
+        val data = hashMapOf(
+            "habit" to habit,
+            "identity" to identity,
+            "location" to location
+        )
+
+        functions
+            .getHttpsCallable("analyzeHabit")
+            .call(data)
+            .addOnSuccessListener { result ->
+                val map = result.data as Map<*, *>
+                val valid = map["valid"] as? Boolean ?: false
+                val reason = map["reason"] as? String ?: ""
+                val suggestion = map["suggestion"] as? String ?: ""
+
+                if (!valid) {
+                    _aiState.value = AiState.Invalid(reason, suggestion)
+                    checkFormReady()
+                } else {
+                    val freqDays = (map["frequencyDays"] as? List<*>)?.map { it.toString() } ?: emptyList()
+                    val gValue = (map["goalValue"] as? Number)?.toDouble() ?: 0.0
+                    val gUnit = map["goalUnit"] as? String ?: ""
+                    val sTime = map["startTime"] as? String ?: ""
+
+                    _frequencyDays.value = freqDays
+                    _frequency.value = if (freqDays.size == 7) "daily" else "custom"
+                    _goalValue.value = gValue
+                    _goalUnit.value = listOf(gUnit)
+                    if (sTime.isNotBlank()) {
+                        _startTime.value = sTime
+                    }
+
+                    _aiState.value = AiState.Suggested(
+                        frequencyDays = freqDays,
+                        goalValue = gValue,
+                        goalUnit = gUnit,
+                        startTime = sTime,
+                        reason = reason
+                    )
+                    checkFormReady()
+                }
+            }
+            .addOnFailureListener { e ->
+                _aiState.value = AiState.Error(e.message ?: "Failed to analyze habit.")
+                checkFormReady()
+            }
+    }
+
     sealed class UiState {
         object Idle : UiState()
         object Loading : UiState()
@@ -95,7 +187,6 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
         _isFormReady.value = validate() == null
     }
 
-    //validation (did the user input everything correctly?
     fun validate(): String? {
         if (_habitname.value.isNullOrBlank())
             return "Please enter a habit name."
@@ -112,9 +203,7 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
         return null
     }
 
-    //gets triggered after continue button is pressed
     fun saveHabit(onSuccess: () -> Unit, onFailure: (String) -> Unit) {
-
         val error = validate()
         if (error != null) {
             onFailure(error)
@@ -126,27 +215,23 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
 
         _uiState.value = UiState.Loading
 
-        //enforce 6 habit per identity
         habitRepository.getHabitCountForIdentity(
             userId = userId,
             identity = identity,
             onResult = { count ->
                 if (count >= 6) {
                     _uiState.value = UiState.Error("You can only have 6 habits per identity.")
-                    onFailure("You can only have 6 habits per identity.")
                     return@getHabitCountForIdentity
                 }
-                
-                // Save identity to preferences if not already set
+
                 if (preferenceManager.getIdentity() == null) {
                     preferenceManager.setIdentity(identity)
                 }
-                
+
                 writeHabit(userId, count, onSuccess, onFailure)
             },
             onError = { e ->
                 _uiState.value = UiState.Error(e.message ?: "Failed to check habit count.")
-                onFailure(e.message ?: "Failed to check habit count.")
             }
         )
     }
@@ -157,7 +242,10 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
         onSuccess: () -> Unit,
         onFailure: (String) -> Unit
     ) {
+        val newHabitId = habitRepository.habitsCollection.document().id
+
         val habit = Habit(
+            habitId = newHabitId,
             userId = userId,
             habitName = _habitname.value ?: "",
             identity = _identity.value ?: "",
@@ -174,10 +262,9 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
 
         habitRepository.createHabit(habit)
             .addOnSuccessListener {
-                if (preferenceManager.getIdentity() == null) {
-                    preferenceManager.setIdentity(_identity.value ?: "")
+                if (habit.reminderEnabled) {
+                    reminderManager.scheduleReminder(habit)
                 }
-
                 _uiState.value = UiState.Success
                 onSuccess()
             }
@@ -187,6 +274,4 @@ class HabitSettingViewModel (application: Application) : AndroidViewModel(applic
                 onFailure(msg)
             }
     }
-
-
 }

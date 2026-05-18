@@ -14,10 +14,10 @@ import edu.ph.iota.R
 class ReminderReceiver : BroadcastReceiver() {
 
     override fun onReceive(context: Context, intent: Intent) {
-        // Security check for system broadcasts if needed, 
+        // Security check for system broadcasts if needed,
         // but since we send this ourselves with explicit intents, it's fine.
         // However, it's good practice to check for action if we filter for it.
-        
+
         val habitName = intent.getStringExtra("habitName") ?: "Habit"
         val identity = intent.getStringExtra("identity") ?: "your goal"
 

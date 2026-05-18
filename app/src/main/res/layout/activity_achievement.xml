@@ -24,17 +24,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.325" /> <TextView
-    android:id="@+id/headline_text"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:fontFamily="serif"
-    android:text="1st Step to Greatness!"
-    android:textColor="#FFFFFF"
-    android:textSize="28sp"
-    app:layout_constraintBottom_toTopOf="@id/congrats_text"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintVertical_bias="0.325" />
+
+    <TextView
+        android:id="@+id/headline_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="serif"
+        android:text="1st Step to Greatness!"
+        android:textColor="#FFFFFF"
+        android:textSize="28sp"
+        app:layout_constraintBottom_toTopOf="@id/congrats_text"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/congrats_text"
@@ -65,31 +67,8 @@
         <include android:id="@+id/day4" layout="@layout/item_day" />
         <include android:id="@+id/day5" layout="@layout/item_day" />
         <include android:id="@+id/day6" layout="@layout/item_day" />
+        <include android:id="@+id/day7" layout="@layout/item_day" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="6dp"
-            android:gravity="center"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="38dp"
-                android:layout_height="38dp"
-                android:background="@drawable/circle_solid_white"
-                android:gravity="center"
-                android:text="1"
-                android:textColor="#000000"
-                android:textStyle="bold" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:text="Thu"
-                android:textColor="#FFFFFF"
-                android:textSize="10sp" />
-        </LinearLayout>
     </LinearLayout>
 
     <Button
