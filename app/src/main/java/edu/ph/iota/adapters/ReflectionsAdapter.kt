@@ -31,7 +31,7 @@ class ReflectionsAdapter(
 
         fun bind(reflection: Reflection) {
             binding.textReflectionContent.text = reflection.content
-            binding.textReflectionDate.text = reflection.date
+            binding.textReflectionDate.text = reflection.displayDate
         }
     }
 }

@@ -2,349 +2,46 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@color/cream"
-    tools:context=".activities.HomeActivity">
+    android:background="#FDF5E6">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+    <ImageButton
+        android:id="@+id/btn_close"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="24dp"
+        android:background="@android:color/transparent"
+        android:src="@android:drawable/ic_menu_close_clear_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#5D4037" />
+
+    <TextView
+        android:id="@+id/habit_title"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical" >
+        android:layout_marginHorizontal="32dp"
+        android:layout_marginTop="100dp"
+        android:fontFamily="serif"
+        android:gravity="center"
+        android:text="Open my phone after washing my face"
+        android:textColor="#5D4037"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:paddingTop="20dp"
-            android:paddingBottom="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/habit_title">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-
-                <ImageView
-                    android:id="@+id/icon_profile"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    app:srcCompat="@drawable/icon_profile_temporary" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                android:layout_weight="1"
-                android:gravity="center_vertical"
-                android:layout_gravity="center">
-                <!--
-                honestly, adding the habit images thing inside is like howdafq
-                adding an x image while keeping the round corners is
-                impossible
-                idk
-                -->
-                <ImageButton
-                    android:backgroundTint="@android:color/transparent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    android:padding="0dp"
-                    app:srcCompat="@drawable/icon_habits_full" />
-
-                <ImageButton
-                    android:id="@+id/button_x"
-                    android:backgroundTint="@android:color/transparent"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="0dp"
-                    android:padding="0dp"
-                    app:srcCompat="@drawable/icon_x_full"/>
-
-            </LinearLayout>
-
-        </LinearLayout>
-        <TextView
-            android:layout_marginLeft="20dp"
-            android:layout_marginRight="20dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/lusitana"
-            android:textSize="24dp"
-            android:background="@null"
-            android:gravity="start"
-
-            android:text="@string/habit_details_example_goal"/>
-        <TextView
-            android:paddingTop="30dp"
-            android:paddingLeft="40dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/inter"
-            android:textSize="20dp"
-            android:background="@null"
-            android:gravity="left"
-            android:textStyle="bold"
-            android:textColor="#753B00"
-
-            android:text="Daily at 6:00 AM"/>
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/habit_progress_card"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="250dp"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="24dp"
-            android:backgroundTint="#fff"
-            app:cardElevation="8dp">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <View
-                    android:id="@+id/horizontal_line"
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:background="#E0E0E0"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintVertical_bias="0.25" />
-
-                <View
-                    android:id="@+id/vertical_line"
-                    android:layout_width="1dp"
-                    android:layout_height="0dp"
-                    android:background="#E0E0E0"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
-                    app:layout_constraintVertical_bias="1.0" />
-
-                <FrameLayout
-                    android:id="@+id/top_section"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/horizontal_line"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent">
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/lusitana"
-                        android:textSize="24dp"
-                        android:textColor="#787878"
-                        android:background="@null"
-                        android:gravity="center"
-                        android:layout_gravity="center_vertical"
-
-                        android:text="@string/habit_details_example_title_records"/>
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-
-                    app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@+id/vertical_line"
-                    app:layout_constraintStart_toStartOf="parent">
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/roboto_variable"
-                            android:gravity="center"
-                            android:text="Completion rate"
-                            android:textStyle="bold"
-                            android:textColor="#676767"
-
-                            android:textSize="15dp" />
-
-                        <TextView
-                            android:id="@+id/completion_rate"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/roboto_variable"
-                            android:gravity="center"
-                            android:textStyle="bold"
-                            android:textColor="#676767"
-
-                            android:text="100%"
-                            android:textSize="48dp" />
-                    </LinearLayout>
-                </FrameLayout>
-                <FrameLayout
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-
-                    app:layout_constraintTop_toBottomOf="@+id/horizontal_line"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/vertical_line">
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="vertical"
-                        android:gravity="center_vertical">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_vertical"
-                            android:fontFamily="@font/roboto_variable"
-                            android:gravity="center"
-                            android:text="Streaks"
-                            android:textStyle="bold"
-                            android:textColor="#676767"
-
-                            android:textSize="15dp" />
-
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:orientation="horizontal"
-                            android:gravity="center">
-
-                            <TextView
-                                android:id="@+id/streak_number"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_gravity="center_vertical"
-                                android:background="@null"
-                                android:fontFamily="@font/roboto_variable"
-                                android:gravity="center"
-                                android:text="1"
-                                android:textColor="#676767"
-
-                                android:textSize="48dp"
-                                android:textStyle="bold" />
-
-                            <ImageView
-                                android:layout_width="30dp"
-                                android:layout_height="30dp"
-                                app:srcCompat="@drawable/icon_fire" />
-
-                        </LinearLayout>
-
-                    </LinearLayout>
-                </FrameLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            app:cardCornerRadius="24dp"
-            app:cardElevation="8dp"
-            android:backgroundTint="#676767">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent">
-
-                <TextView
-                    android:id="@+id/title_review"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@null"
-                    android:fontFamily="@font/lusitana"
-
-                    android:gravity="start"
-                    android:text="@string/habit_details_example_review_title"
-                    android:textColor="#FFF"
-                    android:textSize="22dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <TextView
-                    android:id="@+id/review_title"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginRight="10dp"
-                    android:fontFamily="@font/lusitana"
-                    android:gravity="start"
-                    android:lineSpacingExtra="5dp"
-
-                    android:text="@string/habit_details_example_review_response"
-                    android:textColor="#FFF"
-                    android:textSize="14dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/title_review" />
-
-                <Button
-                    android:id="@+id/button2"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="40dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:backgroundTint="#9C9C9C"
-                    android:fontFamily="@font/lusitana"
-                    android:text="Log habit reflection"
-
-                    android:textColor="#000"
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    app:layout_constraintBottom_toTopOf="@+id/button"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/review_title" />
-                <Button
-                    android:id="@+id/button"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginBottom="40dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    android:backgroundTint="#FFF"
-
-                    android:textSize="18dp"
-                    android:textStyle="bold"
-                    android:fontFamily="@font/lusitana"
-                    android:text="See previous logs"
-                    android:textColor="#000" />
-
-
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+        <androidx.gridlayout.widget.GridLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
             app:cardCornerRadius="24dp"

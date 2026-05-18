@@ -34,13 +34,10 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end|center_vertical"
-
             android:background="@drawable/circle_border"
             android:padding="8dp"
             android:rotation="-45"
             android:src="@drawable/outline_add_24" />
-
-
 
     </androidx.appcompat.widget.Toolbar>
 
@@ -49,15 +46,31 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"/>
-    <Button
-        android:id="@+id/continueButton"
+
+    <FrameLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Continue"
-        android:enabled="false"
-        android:background="@drawable/brown_continue_button_selector"
-        android:layout_gravity="center"
-        android:textSize="20dp"
-        android:fontFamily="@font/lusitana"
-        android:paddingHorizontal="100dp"/>
+        android:layout_gravity="center">
+
+        <Button
+            android:id="@+id/continueButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Continue"
+            android:enabled="false"
+            android:textSize="20dp"
+            android:backgroundTint="#753B00"
+            android:textColor="@android:color/white"
+            android:fontFamily="@font/lusitana"
+            android:paddingHorizontal="100dp"/>
+
+        <ProgressBar
+            android:id="@+id/progressBar"
+            android:layout_width="28dp"
+            android:layout_height="28dp"
+            android:layout_gravity="center"
+            android:visibility="gone"
+            android:indeterminateTint="@android:color/white"/>
+
+    </FrameLayout>
 </LinearLayout>

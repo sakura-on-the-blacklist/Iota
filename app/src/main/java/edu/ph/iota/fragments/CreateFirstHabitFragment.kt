@@ -5,14 +5,17 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.findNavController
 import edu.ph.iota.R
 import edu.ph.iota.databinding.FragmentCreateFirstHabitBinding
+import edu.ph.iota.viewmodels.HabitSettingViewModel
 
 class CreateFirstHabitFragment : Fragment() {
 
     private var _binding: FragmentCreateFirstHabitBinding? = null
     private val binding get() = _binding!!
+    private val viewModel: HabitSettingViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,

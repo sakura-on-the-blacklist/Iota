@@ -3,23 +3,82 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_activities"
-    app:startDestination="@id/habitSettingActivity">
+    app:startDestination="@id/fragmentOnboarding">
 
-    <activity
-        android:id="@+id/habitSettingActivity"
-        android:name="edu.ph.iota.activities.HabitSettingActivity"
-        android:label="activity_habit_setting"
-        tools:layout="@layout/activity_habit_setting">
+    <fragment
+        android:id="@+id/fragmentOnboarding"
+        android:name="edu.ph.iota.fragments.OnboardingFragment"
+        android:label="fragment_onboarding"
+        tools:layout="@layout/fragment_onboarding">
         <action
-            android:id="@+id/from_habit_setting_to_home"
-            app:destination="@id/homeActivity2" />
-    </activity>
+            android:id="@+id/action_onboarding_to_phone"
+            app:destination="@id/fragmentPhoneNumber" />
+    </fragment>
 
+    <fragment
+        android:id="@+id/fragmentPhoneNumber"
+        android:name="edu.ph.iota.fragments.PhoneNumberFragment"
+        android:label="fragment_phone_number"
+        tools:layout="@layout/fragment_phone_number">
+        <action
+            android:id="@+id/action_phone_to_otp"
+            app:destination="@id/fragmentOneTimePassword" />
+    </fragment>
 
-    <activity
-        android:id="@+id/homeActivity2"
-        android:name="edu.ph.iota.activities.HomeActivity"
-        android:label="activity_home"
-        tools:layout="@layout/activity_home" />
+    <fragment
+        android:id="@+id/fragmentOneTimePassword"
+        android:name="edu.ph.iota.fragments.OneTimePasswordFragment"
+        android:label="fragment_one_time_password"
+        tools:layout="@layout/fragment_one_time_password">
+        <action
+            android:id="@+id/action_otp_to_name"
+            app:destination="@id/fragmentName" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentName"
+        android:name="edu.ph.iota.fragments.NameFragment"
+        android:label="fragment_name"
+        tools:layout="@layout/fragment_name">
+        <action
+            android:id="@+id/action_name_to_username"
+            app:destination="@id/fragmentUsername" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentUsername"
+        android:name="edu.ph.iota.fragments.UsernameFragment"
+        android:label="fragment_username"
+        tools:layout="@layout/fragment_username">
+        <action
+            android:id="@+id/action_username_to_birthday"
+            app:destination="@id/fragmentBirthday" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentBirthday"
+        android:name="edu.ph.iota.fragments.BirthdayFragment"
+        android:label="fragment_birthday"
+        tools:layout="@layout/fragment_birthday">
+        <action
+            android:id="@+id/action_birthday_to_habit_template"
+            app:destination="@id/fragmentHabitTemplate" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentHabitTemplate"
+        android:name="edu.ph.iota.fragments.HabitTemplateFragment"
+        android:label="fragment_habit_template"
+        tools:layout="@layout/fragment_habit_template">
+        <action
+            android:id="@+id/action_template_to_create_habit"
+            app:destination="@id/fragmentCreateFirstHabit" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/fragmentCreateFirstHabit"
+        android:name="edu.ph.iota.fragments.CreateFirstHabitFragment"
+        android:label="fragment_create_first_habit"
+        tools:layout="@layout/fragment_create_first_habit" />
 
 </navigation>

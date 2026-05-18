@@ -33,36 +33,35 @@
             android:fontFamily="@font/lusitana"
             android:layout_marginBottom="32dp" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <EditText
+            android:id="@+id/etHabitName"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal">
+            android:hint="I will..."
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="12dp" />
 
-            <View
-                android:id="@+id/circle"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/circle_lightbrown"
-                app:layout_constraintWidth_percent="0.8"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+        <EditText
+            android:id="@+id/etLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="at/in..."
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="12dp" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                android:background="@drawable/pebble_background"
-                android:elevation="12dp"
-                app:layout_constraintDimensionRatio="1:1"
-                app:layout_constraintWidth_percent="0.25"
-                app:layout_constraintTop_toTopOf="@id/circle"
-                app:layout_constraintBottom_toBottomOf="@id/circle"
-                app:layout_constraintStart_toStartOf="@id/circle"
-                app:layout_constraintEnd_toEndOf="@id/circle" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
+        <EditText
+            android:id="@+id/etIdentity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="so that I can become..."
+            android:textColor="@color/white"
+            android:textColorHint="@color/gray"
+            android:backgroundTint="@color/white"
+            android:layout_marginBottom="24dp" />
 
     </LinearLayout>
 
@@ -77,7 +76,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Create first habit"
-            android:backgroundTint="@color/white"
+            android:backgroundTint="#753B00"
             android:textColor="@color/black"
             android:padding="16dp"
             android:fontFamily="@font/inter_bold" />
