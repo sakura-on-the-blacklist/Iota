@@ -26,7 +26,7 @@ public class HabitDetailsActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_habit_details);
         setupCard();
-        setupOthers();
+        setupButtons();
     }
 
     public void setupCard(){
@@ -60,7 +60,12 @@ public class HabitDetailsActivity extends AppCompatActivity {
         HabitProgressCardAdapter adapter = new HabitProgressCardAdapter(ListCardModel);
         habit_progress_card.setAdapter(adapter);
     }
-    public void setupOthers(){
+    public void setupButtons(){
 
+        Button buttonViewAll = findViewById(R.id.buttonViewAll);
+            buttonViewAll.setOnClickListener(v -> {
+            Intent intent = new Intent(HabitDetailsActivity.this, HabitMilestonesActivity.class);
+            startActivity(intent);
+        });
     }
 }
