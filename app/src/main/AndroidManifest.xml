@@ -26,6 +26,9 @@
             android:name=".activities.HabitProgressActivity"
             android:exported="false" />
         <activity
+            android:name=".activities.HabitMilestonesActivity"
+            android:exported="false" />
+        <activity
             android:name="MainActivity"
             android:exported="true">
             <intent-filter>
