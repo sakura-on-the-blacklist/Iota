@@ -1,6 +1,8 @@
 package edu.ph.iota.activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,6 +18,12 @@ import edu.ph.iota.viewmodels.HabitProgressCardViewModel;
 import edu.ph.iota.viewmodels.HabitProgressMonthViewModel;
 
 public class HabitDetailsActivity extends AppCompatActivity {
+
+    // Intent extra keys — used by HomeFragment when launching this activity
+    public static final String EXTRA_HABIT_ID       = "habitId";
+    public static final String EXTRA_HABIT_NAME     = "habitName";
+    public static final String EXTRA_STREAK         = "streak";
+    public static final String EXTRA_LONGEST_STREAK = "longestStreak";
 
     RecyclerView habit_progress_card;
     //TextView habitTrackingGoal, habitTrackingStartDate, habitTrackingEndNumber;
@@ -61,6 +69,8 @@ public class HabitDetailsActivity extends AppCompatActivity {
         habit_progress_card.setAdapter(adapter);
     }
     public void setupButtons(){
+        Button btnX = findViewById(R.id.button_x);
+        btnX.setOnClickListener(v -> finish());
 
         Button buttonViewAll = findViewById(R.id.buttonViewAll);
             buttonViewAll.setOnClickListener(v -> {
