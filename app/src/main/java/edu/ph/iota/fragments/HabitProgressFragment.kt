@@ -22,7 +22,7 @@ class HabitProgressFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
 
-        val view = inflater.inflate(R.layout.fragment_habit_progress, container, false)
+        val view = inflater.inflate(R.layout.activity_habit_progress, container, false)
         habitProgressCard = view.findViewById(R.id.habit_progress_card)
         setupCards()
         return view
