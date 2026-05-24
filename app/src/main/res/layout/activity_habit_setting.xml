@@ -58,9 +58,9 @@
             android:layout_height="wrap_content"
             android:text="Continue"
             android:enabled="false"
-            android:background="@drawable/brown_continue_button_selector"
             android:textSize="20dp"
-            android:backgroundTint="@null"
+            android:backgroundTint="#753B00"
+            android:textColor="@android:color/white"
             android:fontFamily="@font/lusitana"
             android:paddingHorizontal="100dp"/>
 

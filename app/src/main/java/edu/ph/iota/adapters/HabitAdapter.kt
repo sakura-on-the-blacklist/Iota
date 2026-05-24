@@ -16,7 +16,6 @@ import edu.ph.iota.models.Habit
 
 class HabitAdapter(
     private val habits: MutableList<Habit>,
-    private val streakMap: Map<String, Int> = emptyMap(),
     private val onHabitLogged: (habit: Habit) -> Unit
 ) : RecyclerView.Adapter<HabitAdapter.PebbleViewHolder>() {
 
@@ -40,8 +39,8 @@ class HabitAdapter(
             binding.tvHabitName.text = habit.habitName
             binding.tvIdentity.text  = habit.identity
 
-            val streak = streakMap[habit.habitId] ?: 0
-            binding.tvStreak.text = if (streak > 0) "🔥 $streak" else "—"
+            val streak = habit.currentStreak
+            binding.tvStreak.text = if (streak > 0) "$streak" else "—"
 
             setupHoldToLog(habit)
         }
@@ -165,5 +164,13 @@ class HabitAdapter(
         habits.clear()
         habits.addAll(newHabits)
         notifyDataSetChanged()
+    }
+
+    fun updateSingleHabit(updatedHabit: Habit) {
+        val index = habits.indexOfFirst { it.habitId == updatedHabit.habitId }
+        if (index >= 0) {
+            habits[index] = updatedHabit
+            notifyItemChanged(index)
+        }
     }
 }

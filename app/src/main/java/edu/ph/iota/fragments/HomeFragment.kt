@@ -19,6 +19,7 @@ import edu.ph.iota.adapters.CalendarAdapter
 import edu.ph.iota.adapters.HabitAdapter
 import edu.ph.iota.databinding.FragmentHomeBinding
 import edu.ph.iota.models.Habit
+import edu.ph.iota.repositories.HabitLogRepository
 import edu.ph.iota.utilities.CalendarUtils
 import edu.ph.iota.utilities.CalendarUtils.toMonthYear
 import edu.ph.iota.viewmodels.HomeViewModel
@@ -51,6 +52,13 @@ class HomeFragment : Fragment() {
         setupHabits()
         setViews()
         setObservers()
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    override fun onResume() {
+        super.onResume()
+        val userId = viewModel.preferenceManager.getUserId() ?: return
+        viewModel.loadHabits(userId)
     }
 
     private fun setViews() {
@@ -98,7 +106,7 @@ class HomeFragment : Fragment() {
 
         habitAdapter = HabitAdapter(
             habits = mutableListOf(),
-            streakMap = emptyMap(),
+
             onHabitLogged = { habit ->
                 onHabitLogged(habit)
             }
@@ -125,10 +133,23 @@ class HomeFragment : Fragment() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun onHabitLogged(habit: Habit) {
-        val intent = Intent(requireContext(), AchievementActivity::class.java).apply {
-            putExtra("habitId", habit.habitId)
-            putExtra("logDate", selectedDate.toString()) // "YYYY-MM-DD"
-        }
-        startActivity(intent)
+        val repo = HabitLogRepository()
+        repo.logHabit(
+            habit     = habit,
+            date      = selectedDate,
+            value     = habit.goalValue,   // counts as 1 full completion
+            onSuccess = { updatedHabit, newStreak ->
+                val intent = Intent(requireContext(), AchievementActivity::class.java).apply {
+                    putExtra("habitId",    updatedHabit.habitId)
+                    putExtra("habitName",  updatedHabit.habitName)
+                    putExtra("streak",     newStreak)
+                    putExtra("longestStreak", updatedHabit.longestStreak)
+                }
+                startActivity(intent)
+            },
+            onFailure = { message ->
+                Snackbar.make(binding.root, message, Snackbar.LENGTH_LONG).show()
+            }
+        )
     }
 }
