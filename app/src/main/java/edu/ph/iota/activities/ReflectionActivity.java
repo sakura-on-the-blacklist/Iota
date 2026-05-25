@@ -13,6 +13,8 @@ import java.util.Map;
 
 import edu.ph.iota.R;
 
+import edu.ph.iota.fragments.PrevReflectionsFragment;
+
 public class ReflectionActivity extends AppCompatActivity {
 
     private FirebaseFunctions mFunctions;
@@ -51,6 +53,12 @@ public class ReflectionActivity extends AppCompatActivity {
                     if (result != null && result.containsKey("comment")) {
                         String aiComment = (String) result.get("comment");
                         responseView.setText(aiComment);
+
+                        getSupportFragmentManager().beginTransaction()
+                                .replace(android.R.id.content, new PrevReflectionsFragment())
+                                .addToBackStack(null)
+                                .commit();
+
                     } else {
                         responseView.setText("AIota left the notebook blank.");
                     }
