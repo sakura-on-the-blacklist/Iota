@@ -149,7 +149,7 @@ public class AchievementActivity extends AppCompatActivity {
         // View habit details — goes to the progress summary page
         Button btnViewDetails = findViewById(R.id.view_habit_button);
         btnViewDetails.setOnClickListener(v -> {
-            Intent intent = new Intent(AchievementActivity.this, HabitDetails.class);
+            Intent intent = new Intent(AchievementActivity.this, HabitDetailsActivity.class);
             intent.putExtra("habitId",       habitId);
             intent.putExtra("streak",        streak);
             intent.putExtra("longestStreak", longestStreak);
