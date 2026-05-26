@@ -62,8 +62,4 @@ class HomeActivity : AppCompatActivity() {
         // Mark home as selected on launch
         binding.bottomNavigation.selectedItemId = R.id.homeButton
     }
-
-
-
-
 }
