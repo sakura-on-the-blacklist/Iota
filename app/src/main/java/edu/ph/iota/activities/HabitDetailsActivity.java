@@ -52,9 +52,12 @@ public class HabitDetailsActivity extends AppCompatActivity {
         Button btnX = findViewById(R.id.button_x);
         btnX.setOnClickListener(v -> finish());
 
+        int longestStreak = getIntent().getIntExtra(EXTRA_LONGEST_STREAK, 0);
+        // this one is for the MILESTONES page
         Button buttonViewAll = findViewById(R.id.buttonViewAll);
         buttonViewAll.setOnClickListener(v -> {
             Intent intent = new Intent(HabitDetailsActivity.this, HabitMilestonesActivity.class);
+            intent.putExtra("longestStreak", longestStreak);
             startActivity(intent);
         });
 

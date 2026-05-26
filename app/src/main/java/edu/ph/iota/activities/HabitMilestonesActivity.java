@@ -9,24 +9,57 @@ import edu.ph.iota.HexagonBadgeView;
 import edu.ph.iota.R;
 
 public class HabitMilestonesActivity extends AppCompatActivity {
+
+    public static final String EXTRA_LONGEST_STREAK = "longestStreak";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_milestones);
 
         findViewById(R.id.btn_close).setOnClickListener(v -> finish());
+        int longestStreak = getIntent().getIntExtra(EXTRA_LONGEST_STREAK, 0);
 
-        setupBadge(R.id.item_1, "1", false);
-        setupBadge(R.id.item_3, "3", true);
-        setupBadge(R.id.item_5, "5", true);
-        setupBadge(R.id.item_7, "7", true);
-        setupBadge(R.id.item_10, "10", true);
-        setupBadge(R.id.item_14, "14", true);
-        setupBadge(R.id.item_21, "21", true);
-        setupBadge(R.id.item_25, "25", true);
-        setupBadge(R.id.item_50, "50", true);
-        setupBadge(R.id.item_60, "60", true);
-        setupBadge(R.id.item_66, "66", true);
+        setupMilestones(longestStreak);
+    }
+
+    private void setupMilestones(int longestStreak){
+        int[] badge_items = {
+                R.id.item_1,
+                R.id.item_3,
+                R.id.item_5,
+                R.id.item_7,
+                R.id.item_10,
+                R.id.item_14,
+                R.id.item_21,
+                R.id.item_25,
+                R.id.item_50,
+                R.id.item_60,
+                R.id.item_66
+        };
+        int[] badge_days = {
+                1,
+                3,
+                5,
+                7,
+                10,
+                14,
+                21,
+                25,
+                50,
+                60,
+                66
+        };
+
+        int i = 0;
+        for (int day:badge_days){
+            if(longestStreak >= day){
+                setupBadge(badge_items[i], String.valueOf(day), false);
+            }else{
+                setupBadge(badge_items[i], String.valueOf(day), true);
+            }
+            i++;
+        }
     }
 
     private void setupBadge(int resId, String count, boolean locked) {
