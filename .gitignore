@@ -11,3 +11,5 @@ local.properties
 .gradle*
 gradle/*
 !gradle/libs.versions.toml
+app/src/main/java/edu/ph/iota/activities/TEMPBackendRequestActivity*
+app/src/main/res/layout/temp_activity_backend_requests.xml
