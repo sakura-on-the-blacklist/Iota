@@ -33,6 +33,8 @@ public class HabitToMonthFormatting {
 
     public void ListHabitLogToListYMD(){
         int i = 0;
+        int last_month = 0;
+        int last_year = 0;
         for (HabitLog log : this.HabitLogs) {
             String[] parts = log.getDate().split("-");
             int year = Integer.parseInt(parts[0]);
@@ -49,6 +51,12 @@ public class HabitToMonthFormatting {
                 i++;
             }
             this.YMDs.get(i).add_date(day);
+            last_year = year;
+            last_month = month;
         }
+        for(i = 0; i<3; i++){
+            this.YMDs.add(new YMD(last_year + ((last_month + i)/12),last_month + i));
+        }
+        // add additional 3 months after
     }
 }
