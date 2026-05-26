@@ -5,10 +5,14 @@ import java.util.List;
 
 public class HabitProgressCardViewModel {
 
-    private String habitTrackingStartDate;
-    private String habitTrackingGoal;
-    private String habitTrackingEndNumber;
-    private List<HabitProgressMonthViewModel> listMonthModel = new ArrayList<>();
+    public String habitTrackingStartDate;
+    public String habitTrackingGoal;
+    public String habitTrackingEndNumber;
+    public List<HabitProgressMonthViewModel> listMonthModel = new ArrayList<>();
+
+    public void setListMonthModel(List<HabitProgressMonthViewModel> listMonthModel) {
+        this.listMonthModel = listMonthModel;
+    }
 
     public HabitProgressCardViewModel(
             String habitTrackingStartDate,
