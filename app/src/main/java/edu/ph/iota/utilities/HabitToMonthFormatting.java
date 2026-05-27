@@ -1,18 +1,8 @@
 package edu.ph.iota.utilities;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.Map;
-import java.util.TreeMap;
-
-import edu.ph.iota.activities.TEMPBackendRequestActivity_02;
 import edu.ph.iota.models.HabitLog;
-
-import com.google.firebase.firestore.FirebaseFirestore;
-import edu.ph.iota.repositories.HabitLogRepository;
-import edu.ph.iota.viewmodels.HabitProgressMonthViewModel;
-import kotlin.Unit;
 
 public class HabitToMonthFormatting {
     public List<HabitLog> HabitLogs;
