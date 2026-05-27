@@ -67,6 +67,14 @@ public class HabitDetailsActivity extends AppCompatActivity {
             startActivity(intent);
         });
 
+        Button buttonLogReflection = findViewById(R.id.buttonReflection);
+        if (buttonLogReflection != null) {
+            buttonLogReflection.setOnClickListener(v -> {
+                Intent intent = new Intent(HabitDetailsActivity.this, ReflectionActivity.class);
+                startActivity(intent);
+            });
+        }
+
     }
 
     public void setupData(){

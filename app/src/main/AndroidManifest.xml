@@ -10,65 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Iota" >
-        <activity
-            android:name=".activities.LogoutActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.HabitSettingActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.ReflectionActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.HomeActivity"
-            android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".activities.test_HabitProgressCardView"
-            android:exported="false">
-        </activity>
-
 
         <activity
-            android:name=".activities.AchievementActivity"
-            android:exported="false">
-        </activity>
-
-        <activity
-            android:name=".activities.HabitDetails"
-            android:exported="false">
-        </activity>
-
-        <activity
-            android:name=".activities.HabitDetailsActivity"
-            android:exported="false">
-        </activity>
-
-        <activity
-            android:name=".activities.SelectionActivity"
-            android:exported="false">
-        <activity
-            android:name=".activities.HomeActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.HabitDetailsActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.HabitProgressActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.AchievementActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activities.HabitMilestonesActivity"
-            android:exported="false" />
-        <activity
-            android:name="MainActivity"
+            android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,9 +20,50 @@
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activities.TutorialActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.HomeActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.HabitSettingActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.ReflectionActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.AchievementActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.HabitDetailsActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.HabitProgressActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.HabitMilestonesActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.LogoutActivity"
+            android:exported="false" />
+
+        <activity
+            android:name=".activities.SelectionActivity"
+            android:exported="false" />
+
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
+
     </application>
 
 </manifest>
