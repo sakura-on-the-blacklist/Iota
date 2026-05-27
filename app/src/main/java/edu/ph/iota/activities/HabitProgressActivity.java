@@ -1,6 +1,7 @@
 package edu.ph.iota.activities;
 
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +28,7 @@ public class HabitProgressActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.fragment_habit_progress);
         setupCards();
+        setupButtons();
     }
 
     public void setupCards(){
@@ -84,5 +86,9 @@ public class HabitProgressActivity extends AppCompatActivity {
         });
         HabitProgressCardAdapter adapter = new HabitProgressCardAdapter(ListCardModel);
         habit_progress_card.setAdapter(adapter);
+    }
+    public void setupButtons(){
+        Button btnX = findViewById(R.id.button_x);
+        btnX.setOnClickListener(v -> finish());
     }
 }

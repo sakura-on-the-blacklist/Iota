@@ -42,12 +42,13 @@ public class AchievementActivity extends AppCompatActivity {
         setContentView(R.layout.activity_achievement);
 
         String habitId       = getIntent().getStringExtra(EXTRA_HABIT_ID);
+        String habitName       = getIntent().getStringExtra(EXTRA_HABIT_NAME);
         int    streak        = getIntent().getIntExtra(EXTRA_STREAK, 0);
         int    longestStreak = getIntent().getIntExtra(EXTRA_LONGEST_STREAK, 0);
 
         setupStreakDisplay(streak, longestStreak);
         setupDayTracker(streak);
-        setupButtons(habitId, streak, longestStreak);
+        setupButtons(habitId, streak, longestStreak, habitName);
     }
 
     // ── Streak text ───────────────────────────────────────────────────────────
@@ -140,7 +141,7 @@ public class AchievementActivity extends AppCompatActivity {
 
     // ── Buttons ───────────────────────────────────────────────────────────────
 
-    private void setupButtons(String habitId, int streak, int longestStreak) {
+    private void setupButtons(String habitId, int streak, int longestStreak, String habitName) {
 
         // Back to home — closes this activity, returns to HomeFragment
         Button btnHome = findViewById(R.id.back_to_home_button);
@@ -151,6 +152,7 @@ public class AchievementActivity extends AppCompatActivity {
         btnViewDetails.setOnClickListener(v -> {
             Intent intent = new Intent(AchievementActivity.this, HabitDetailsActivity.class);
             intent.putExtra("habitId",       habitId);
+            intent.putExtra("habitName",     habitName);
             intent.putExtra("streak",        streak);
             intent.putExtra("longestStreak", longestStreak);
             startActivity(intent);
