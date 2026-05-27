@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.functions.FirebaseFunctions;
@@ -11,9 +12,9 @@ import com.google.firebase.functions.FirebaseFunctions;
 import java.util.HashMap;
 import java.util.Map;
 
-import edu.ph.iota.R;
+import android.view.View;
 
-import edu.ph.iota.fragments.PrevReflectionsFragment;
+import edu.ph.iota.R;
 
 public class ReflectionActivity extends AppCompatActivity {
 
@@ -22,6 +23,7 @@ public class ReflectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        // 1. Make sure this points to your full activity layout, NOT an item row!
         setContentView(R.layout.item_reflection);
 
         mFunctions = FirebaseFunctions.getInstance();
@@ -30,7 +32,10 @@ public class ReflectionActivity extends AppCompatActivity {
         Button btnSave = findViewById(R.id.btnSave);
         TextView tvAIResponse = findViewById(R.id.textAIResponse);
 
-        findViewById(R.id.btnClose).setOnClickListener(v -> finish());
+        View btnClose = findViewById(R.id.btnClose);
+        if (btnClose != null) {
+            btnClose.setOnClickListener(v -> finish());
+        }
 
         btnSave.setOnClickListener(v -> {
             String userInput = etReflection.getText().toString().trim();
@@ -54,17 +59,15 @@ public class ReflectionActivity extends AppCompatActivity {
                         String aiComment = (String) result.get("comment");
                         responseView.setText(aiComment);
 
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(android.R.id.content, new PrevReflectionsFragment())
-                                .addToBackStack(null)
-                                .commit();
+                        Toast.makeText(this, "Reflection Saved!", Toast.LENGTH_SHORT).show();
 
+                        finish();
                     } else {
                         responseView.setText("AIota left the notebook blank.");
                     }
                 })
                 .addOnFailureListener(e -> {
-                    responseView.setText("Error: Could not reach the server.");
+                    responseView.setText("AI analysis failed.");
                     e.printStackTrace();
                 });
     }
