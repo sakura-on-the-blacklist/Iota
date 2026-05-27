@@ -6,7 +6,7 @@ import com.google.firebase.firestore.Query
 import com.google.firebase.firestore.QuerySnapshot
 import edu.ph.iota.models.Reflection
 
-class ReflectionRepository(
+class ReflectionRepository @JvmOverloads constructor(
     private val firestore: FirebaseFirestore = FirebaseFirestore.getInstance()
 ) {
 
@@ -22,7 +22,7 @@ class ReflectionRepository(
     fun getReflectionsByUserId(userId: String): Task<QuerySnapshot> {
         return reflectionsCollection
             .whereEqualTo("userId", userId)
-            .orderBy("timestamp", Query.Direction.DESCENDING)
+//            .orderBy("date", Query.Direction.DESCENDING)
             .get()
     }
 

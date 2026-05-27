@@ -15,14 +15,17 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
 import edu.ph.iota.R;
 import edu.ph.iota.adapters.HabitProgressCardAdapter;
 import edu.ph.iota.repositories.HabitLogRepository;
+import edu.ph.iota.repositories.ReflectionRepository;
 import edu.ph.iota.utilities.HabitToMonthFormatting;
 import edu.ph.iota.viewmodels.HabitProgressCardViewModel;
 import edu.ph.iota.viewmodels.HabitProgressMonthViewModel;
@@ -83,6 +86,7 @@ public class HabitDetailsActivity extends AppCompatActivity {
         this.streakNumber = String.valueOf(getIntent().getIntExtra(EXTRA_STREAK, 0));
         this.habitTrackingGoal = habitName;
 
+        // REQUEST FOR THE HABIT LOGS
         assert habitId != null;
         HabitLogRepository repository = new HabitLogRepository(FirebaseFirestore.getInstance());
         repository.getLogs(habitId, "0", "999",
@@ -118,10 +122,11 @@ public class HabitDetailsActivity extends AppCompatActivity {
                 return Unit.INSTANCE;
             }
         );
+
+        // REQUEST FOR THE HABIT DETAILS
         // we need a new request here for the start date an the estimated time to end
         final FirebaseFirestore firestore = FirebaseFirestore.getInstance();
         CollectionReference habitsCollection = firestore.collection("habits");
-
         habitsCollection
             .whereEqualTo("habitId", habitId)
             .limit(1)
@@ -135,13 +140,39 @@ public class HabitDetailsActivity extends AppCompatActivity {
                 this.habitIdentity = doc.getString("identity");
                 this.frequencyDays = (List<String>) doc.get("frequencyDays");
                 this.frequencyTime = doc.getString("startTime");
-                runOnUiThread(this::setupCard);
+                runOnUiThread(this::setupReflection);
                 runOnUiThread(this::setupHeaders);
+                runOnUiThread(this::setupReflection);
             })
             .addOnFailureListener(e -> {
                 runOnUiThread(() -> Toast.makeText(
                     getApplicationContext(),
                     "Error: " + e, Toast.LENGTH_SHORT).show()
+                );
+            });
+
+        // REQUEST FOR THE LAST HABIT LOG
+        CollectionReference reflectionsCollection = firestore.collection("reflections");
+        reflectionsCollection
+            .whereEqualTo("habitId", habitId)
+            .get()
+            .addOnSuccessListener(querySnapshot -> {
+
+                for (DocumentSnapshot doc:querySnapshot.getDocuments()){
+                    if(this.lastReflectionLogDate == null){
+                        this.lastReflectionLogDate = doc.getString("date");
+                        this.lastReflectionLog = doc.getString("content");
+                    }else if(Objects.requireNonNull(doc.getString("date")).compareTo(this.lastReflectionLogDate) > 0){
+                        this.lastReflectionLogDate = doc.getString("date");
+                        this.lastReflectionLog = doc.getString("content");
+                    }
+                }
+                runOnUiThread(this::setupReflection);
+            })
+            .addOnFailureListener(e -> {
+                runOnUiThread(() -> Toast.makeText(
+                        getApplicationContext(),
+                        "Error: " + e, Toast.LENGTH_SHORT).show()
                 );
             });
 
@@ -190,15 +221,20 @@ public class HabitDetailsActivity extends AppCompatActivity {
         TV_streak_number = findViewById(R.id.streak_number);
         TV_completion_rate.setText(completionRate + "%");
         TV_streak_number.setText(streakNumber);
-
     }
 
-    private String lastReflectionLogDate;
-    private String lastReflectionLog;
+    private String lastReflectionLogDate = null;
+    private String lastReflectionLog = null;
     private void setupReflection(){
         // REFLECTION LOG
         // how do you feel your progress towards peforming <habit_title>
         // last reflectiion log date + last reflection log
+        TextView TV_reflection_title;
+        TV_reflection_title = findViewById(R.id.reflection_title);
+        TV_reflection_title.setText("How do you feel about your progress towards forming \"" + habitTitle + "\" habit?");
+        TextView TV_reflection_last_review;
+        TV_reflection_last_review = findViewById(R.id.reflection_last_review);
+        TV_reflection_last_review.setText(lastReflectionLogDate + ":\n" + lastReflectionLog);
     }
 
     private String habitTitle;
