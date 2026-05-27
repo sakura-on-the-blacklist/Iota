@@ -6,7 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
-import edu.ph.iota.activities.TEMPBackendRequestActivity_02;
+//import edu.ph.iota.activities.TEMPBackendRequestActivity_02;
 import edu.ph.iota.models.HabitLog;
 
 import com.google.firebase.firestore.FirebaseFirestore;

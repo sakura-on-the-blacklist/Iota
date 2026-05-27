@@ -46,15 +46,11 @@ dependencies {
     implementation(libs.androidx.activity)
     implementation(libs.androidx.constraintlayout)
 
-    implementation("androidx.recyclerview:recyclerview:1.3.2")
-    implementation(libs.androidx.recyclerview)
-    implementation(libs.androidx.gridlayout)
-    implementation(libs.gridlayout)
-
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
+    implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation("com.google.firebase:firebase-functions")
     implementation("com.hbb20:ccp:2.6.0")
     implementation("androidx.navigation:navigation-fragment-ktx:2.8.0")
