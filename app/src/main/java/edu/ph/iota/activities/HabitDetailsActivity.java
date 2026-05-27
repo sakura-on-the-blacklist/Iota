@@ -55,6 +55,8 @@ public class HabitDetailsActivity extends AppCompatActivity {
         Button btnX = findViewById(R.id.button_x);
         btnX.setOnClickListener(v -> finish());
 
+        String habitId = getIntent().getStringExtra(EXTRA_HABIT_ID);
+        String habitName = getIntent().getStringExtra(EXTRA_HABIT_NAME);
         int longestStreak = getIntent().getIntExtra(EXTRA_LONGEST_STREAK, 0);
         // this one is for the MILESTONES page
         Button buttonViewAll = findViewById(R.id.buttonViewAll);
@@ -67,6 +69,7 @@ public class HabitDetailsActivity extends AppCompatActivity {
         Button buttonPreviousLogs = findViewById(R.id.buttonPreviousLogs);
         buttonPreviousLogs.setOnClickListener(v -> {
             Intent intent = new Intent(HabitDetailsActivity.this, PrevReflectionsActivity.class);
+            intent.putExtra("habitId", habitId);
             startActivity(intent);
         });
 
@@ -74,6 +77,8 @@ public class HabitDetailsActivity extends AppCompatActivity {
         if (buttonLogReflection != null) {
             buttonLogReflection.setOnClickListener(v -> {
                 Intent intent = new Intent(HabitDetailsActivity.this, ReflectionActivity.class);
+                intent.putExtra("habitId", habitId);
+                intent.putExtra("habitName", habitName);
                 startActivity(intent);
             });
         }
@@ -234,7 +239,7 @@ public class HabitDetailsActivity extends AppCompatActivity {
         TV_reflection_title.setText("How do you feel about your progress towards forming \"" + habitTitle + "\" habit?");
         TextView TV_reflection_last_review;
         TV_reflection_last_review = findViewById(R.id.reflection_last_review);
-        TV_reflection_last_review.setText(lastReflectionLogDate + ":\n" + lastReflectionLog);
+        TV_reflection_last_review.setText("Last reflection log:\n" + lastReflectionLog);
     }
 
     private String habitTitle;
