@@ -17,7 +17,7 @@ import edu.ph.iota.adapters.HabitProgressCardAdapter;
 import edu.ph.iota.viewmodels.HabitProgressCardViewModel;
 import edu.ph.iota.viewmodels.HabitProgressMonthViewModel;
 
-public class HabitProgressActivity extends AppCompatActivity {
+public class TEST_HabitProgressActivity extends AppCompatActivity {
 
     RecyclerView habit_progress_card;
     //TextView habitTrackingGoal, habitTrackingStartDate, habitTrackingEndNumber;
@@ -26,7 +26,7 @@ public class HabitProgressActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.fragment_habit_progress);
+        setContentView(R.layout.activity_habit_progress);
         setupCards();
         setupButtons();
     }
