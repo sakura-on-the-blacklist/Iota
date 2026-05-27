@@ -23,8 +23,7 @@ public class ReflectionActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        // 1. Make sure this points to your full activity layout, NOT an item row!
-        setContentView(R.layout.item_reflection);
+        setContentView(R.layout.activity_reflection);
 
         mFunctions = FirebaseFunctions.getInstance();
 
