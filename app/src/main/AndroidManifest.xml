@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools" >
-
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
@@ -10,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Iota" >
-
         <activity
             android:name=".MainActivity"
             android:exported="true">
@@ -19,51 +17,39 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".activities.TutorialActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.HomeActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.HabitSettingActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activities.ReflectionActivity"
-            android:exported="false" />
-
         <activity
             android:name=".activities.AchievementActivity"
             android:exported="false" />
-
         <activity
             android:name=".activities.HabitDetailsActivity"
             android:exported="false" />
-
-        <activity
-            android:name=".activities.HabitProgressActivity"
-            android:exported="false" />
-
         <activity
             android:name=".activities.HabitMilestonesActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".activities.HabitSettingActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.HomeActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.LogoutActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".activities.PrevReflectionsActivity"
+            android:exported="false" />
+        <activity
+            android:name=".activities.ReflectionActivity"
+            android:exported="false" />
         <activity
             android:name=".activities.SelectionActivity"
             android:exported="false" />
-
+        <activity
+            android:name=".activities.TutorialActivity"
+            android:exported="false" />
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
 
     </application>
-
 </manifest>
