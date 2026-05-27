@@ -14,9 +14,11 @@ import androidx.fragment.app.activityViewModels
 import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.firestore.QuerySnapshot
 import edu.ph.iota.activities.HabitSettingActivity
+import edu.ph.iota.activities.TutorialFragment
 import edu.ph.iota.databinding.FragmentUsernameBinding
 import java.lang.Exception
 import kotlin.getValue
+import kotlin.jvm.java
 
 class UsernameFragment() : Fragment() {
 
@@ -143,7 +145,7 @@ class UsernameFragment() : Fragment() {
         startActivity(
             Intent(
                 requireContext(),
-                HabitSettingActivity::class.java
+                TutorialFragment::class.java
             )
         )
 

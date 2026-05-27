@@ -354,8 +354,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="16dp"
+            android:backgroundTint="#ffffff"
             app:cardCornerRadius="24dp"
-            android:backgroundTint="#fff"
             app:cardElevation="8dp">
 
             <androidx.constraintlayout.widget.ConstraintLayout
@@ -366,18 +366,16 @@
                     android:id="@+id/textView"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-
                     android:layout_marginTop="20dp"
                     android:layout_marginStart="20dp"
                     android:background="@null"
                     android:fontFamily="@font/lusitana"
                     android:gravity="center"
                     android:text="Milestones"
-                    android:textSize="24dp"
+                    android:textSize="24sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
-
 
                 <LinearLayout
                     android:id="@+id/repetitionView"
@@ -390,7 +388,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/textView">
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
@@ -401,8 +399,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-
                             app:srcCompat="@drawable/day1_c" />
 
                         <TextView
@@ -410,16 +406,15 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@null"
-
                             android:fontFamily="@font/inter"
                             android:gravity="center"
                             android:text="1 Repetition"
-                            android:textSize="15dp"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
@@ -430,8 +425,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-
                             app:srcCompat="@drawable/day3_nc" />
 
                         <TextView
@@ -439,16 +432,15 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@null"
-
                             android:fontFamily="@font/inter"
                             android:gravity="center"
-                            android:text="1 Repetition"
-                            android:textSize="15dp"
+                            android:text="3 Repetitions"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:layout_width="wrap_content"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
                         android:gravity="center_horizontal"
@@ -459,8 +451,6 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-
                             app:srcCompat="@drawable/day5_nc" />
 
                         <TextView
@@ -468,11 +458,10 @@
                             android:layout_height="wrap_content"
                             android:layout_gravity="center_horizontal"
                             android:background="@null"
-
                             android:fontFamily="@font/inter"
                             android:gravity="center"
-                            android:text="1 Repetition"
-                            android:textSize="15dp"
+                            android:text="5 Repetitions"
+                            android:textSize="15sp"
                             android:textStyle="bold" />
                     </LinearLayout>
 
