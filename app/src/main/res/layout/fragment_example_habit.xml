@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="24dp"
+    android:background="#FAF8F5">
+
+    <TextView
+        android:id="@+id/tvNewHabitHeader"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:fontFamily="@font/lusitana"
+        android:text="New habit"
+        android:textColor="#706A61"
+        android:textSize="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.google.android.flexbox.FlexboxLayout
+        android:id="@+id/templateFlexContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:flexWrap="wrap"
+        app:flexDirection="row"
+        app:justifyContent="flex_start"
+        app:alignItems="baseline"
+        app:layout_constraintTop_toBottomOf="@id/tvNewHabitHeader"
+        app:layout_constraintBottom_toTopOf="@id/cvGoalTipCard"
+        app:layout_constraintVertical_chainStyle="packed">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="I will "
+            android:fontFamily="@font/lusitana"
+            android:textSize="24sp"
+            android:textColor="#BCB6AF" />
+
+        <TextView
+            android:id="@+id/tvTemplateHabit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="habit"
+            android:fontFamily="@font/lusitana"
+            android:textSize="24sp"
+            android:textColor="@color/brown"
+            android:background="@drawable/tinted_underline"
+            android:paddingBottom="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=", "
+            android:fontFamily="@font/lusitana"
+            android:textSize="24sp"
+            android:textColor="#BCB6AF" />
+
+        <TextView
+            android:id="@+id/tvTemplateLocation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="time/location"
+            android:textColor="@color/brown"
+            android:fontFamily="@font/lusitana"
+            android:textSize="24sp"
+            android:background="@drawable/tinted_underline"
+            android:paddingBottom="2dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=" so that I can become "
+            android:fontFamily="@font/lusitana"
+            android:textSize="24sp"
+            android:textColor="#BCB6AF" />
+
+        <TextView
+            android:id="@+id/tvTemplateIdentity"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="type of person I want to be"
+            android:fontFamily="@font/lusitana"
+            android:textColor="@color/brown"
+            android:textSize="24sp"
+            android:background="@drawable/tinted_underline"
+            android:paddingBottom="2dp" />
+
+    </com.google.android.flexbox.FlexboxLayout>
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cvGoalTipCard"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        app:cardCornerRadius="12dp"
+        app:cardElevation="0dp"
+        app:cardBackgroundColor="#FFFFFF"
+        app:layout_constraintTop_toBottomOf="@id/templateFlexContainer"
+        app:layout_constraintBottom_toTopOf="@id/btnFirstHabitContinue">
+
+        <TextView
+            android:id="@+id/tvTipContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp"
+            android:text="The goal is not to read a book, the goal is to become a reader."
+            android:fontFamily="@font/inter_bold"
+            android:textColor="#1A1A1A"
+            android:textSize="15sp"
+            android:lineSpacingExtra="4dp" />
+    </androidx.cardview.widget.CardView>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFirstHabitContinue"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:text="Continue"
+        android:fontFamily="@font/lusitana"
+        android:textAllCaps="false"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        app:backgroundTint="#613000"
+        app:cornerRadius="15dp"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

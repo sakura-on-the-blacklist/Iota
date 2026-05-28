@@ -69,3 +69,46 @@ exports.analyzeHabit = onCall(async (request) => {
         throw new HttpsError("internal", "AI analysis failed.");
     }
 });
+
+exports.analyzeReflection = onCall(async (request) => {
+    const { reflection } = request.data || {};
+
+    if (!reflection) {
+        throw new HttpsError("invalid-argument", "Reflection text is required.");
+    }
+
+    const reflectionPrompt = `
+    You are an empathetic, grounded personal growth coach.
+    The user has submitted the following reflection about their daily habits and mindset:
+    "${reflection}"
+
+    Provide a concise, encouraging, and actionable response (under 3 sentences) to guide their progress.
+    Respond with plain text only.`;
+
+    try {
+        const response = await fetch("https://api.groq.com/openai/v1/chat/completions", {
+            method: "POST",
+            headers: {
+                "Authorization": `Bearer ${GROQ_API_KEY}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                model: "llama-3.1-8b-instant",
+                messages: [{ role: "user", content: reflectionPrompt }],
+                temperature: 0.7
+            })
+        });
+
+        if (!response.ok) throw new Error("Groq API failure during reflection check");
+
+        const data = await response.json();
+
+        return {
+            comment: data.choices[0].message.content.trim()
+        };
+
+    } catch (error) {
+        console.error("Reflection Analysis Error:", error);
+        throw new HttpsError("internal", "AI reflection processing failed.");
+    }
+});

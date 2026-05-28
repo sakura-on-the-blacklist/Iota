@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager; // Added import
 import com.google.android.material.snackbar.Snackbar;
 import java.util.Collections;
 import edu.ph.iota.adapters.ReflectionsAdapter;
@@ -28,33 +29,40 @@ public class PrevReflectionsActivity extends AppCompatActivity {
         setupRecyclerView();
         setupObservers();
 
-        // Load reflections from Firebase
         viewModel.loadAllReflections();
     }
 
     private void setupCloseButton() {
-        binding.closeButton.setOnClickListener(v -> finish());
+        if (binding.closeButton != null) {
+            binding.closeButton.setOnClickListener(v -> finish());
+        }
     }
 
     private void setupPebbleClick() {
-        binding.pebbleView.setOnClickListener(v -> {
-            // Optional: Navigate to add reflection screen
-        });
+        if (binding.pebbleView != null) {
+            binding.pebbleView.setOnClickListener(v -> {
+                // Optional: Navigate to add reflection screen
+            });
+        }
     }
 
     private void setupRecyclerView() {
-        ReflectionsAdapter adapter = new ReflectionsAdapter(Collections.emptyList());
-        binding.recyclerViewReflections.setAdapter(adapter);
+        if (binding.recyclerViewReflections != null) {
+            binding.recyclerViewReflections.setLayoutManager(new LinearLayoutManager(this));
+            ReflectionsAdapter adapter = new ReflectionsAdapter(Collections.emptyList());
+            binding.recyclerViewReflections.setAdapter(adapter);
+        }
     }
 
     private void setupObservers() {
         viewModel.getReflections().observe(this, reflections -> {
-            ReflectionsAdapter adapter = new ReflectionsAdapter(reflections);
-            binding.recyclerViewReflections.setAdapter(adapter);
+            if (binding.recyclerViewReflections != null && reflections != null) {
+                ReflectionsAdapter adapter = new ReflectionsAdapter(reflections);
+                binding.recyclerViewReflections.setAdapter(adapter);
+            }
         });
 
         viewModel.isLoading().observe(this, isLoading -> {
-            // Show/hide loading indicator if you have one
         });
 
         viewModel.getErrorMessage().observe(this, message -> {
