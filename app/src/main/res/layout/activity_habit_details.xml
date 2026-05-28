@@ -31,27 +31,6 @@
                 app:srcCompat="@drawable/icon_profile_temporary" />
 
             <com.google.android.material.button.MaterialButton
-                android:id="@+id/buttonHabit"
-                android:layout_width="wrap_content"
-                android:layout_height="50dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="15dp"
-
-                android:textColor="#fff"
-                app:iconTint="#fff"
-
-                android:backgroundTint="@color/brown"
-                android:fontFamily="@font/inter_bold"
-                android:paddingEnd="15dp"
-                android:text="Habits"
-                android:textSize="19dp"
-                app:icon="@drawable/icon_ios_share_50dp"
-                app:iconGravity="textEnd"
-                app:iconSize="20dp"
-                app:layout_constraintEnd_toStartOf="@+id/button_x"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.button.MaterialButton
                 android:id="@+id/button_x"
                 android:layout_width="42dp"
                 android:layout_height="48dp"
