@@ -43,15 +43,17 @@ class HabitProgressFragment : Fragment() {
         userId = viewModel.preferenceManager.getUserId()
 
         habitProgressCard = view.findViewById(R.id.habit_progress_card)
+
+        ListCardModel = mutableListOf()
+        ListHabitID = mutableListOf()
         getDataHabit()
     }
     // ==================================================
     // CARD SETUP
     // ==================================================
     private var userId: String? = null
-    private val ListCardModel: MutableList<HabitProgressCardViewModel> = mutableListOf()
-
-    private val ListHabitID: MutableList<String> = mutableListOf()
+    private var ListCardModel: MutableList<HabitProgressCardViewModel> = mutableListOf()
+    private var ListHabitID: MutableList<String> = mutableListOf()
     private fun getDataHabit(){
         // first get the habits associated with the user
         val empty_month_list:MutableList<HabitProgressMonthViewModel?> = mutableListOf()
