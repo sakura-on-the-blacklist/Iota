@@ -8,7 +8,7 @@
     tools:context=".fragments.HomeFragment">
 
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
@@ -18,25 +18,35 @@
             android:id="@+id/profileBtn"
             android:layout_width="45dp"
             android:layout_height="45dp"
-            android:layout_margin="5dp"
+            android:layout_marginStart="25dp"
+            android:layout_marginTop="5dp"
             app:backgroundTint="@null"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             android:background="@drawable/pebble_background"
             />
 
         <com.google.android.material.button.MaterialButton
+            android:layout_gravity="end"
             android:id="@+id/addHabitButton"
-            android:layout_marginStart="180dp"
-            android:layout_width="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="15dp"
+            android:layout_width="130dp"
             android:layout_height="45dp"
-            android:layout_weight="1"
+
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+
             app:icon="@drawable/outline_add_24"
+            app:iconTint="#fff"
             android:text="Habits"
+            android:textColor="#fff"
             android:textAlignment="textEnd"
             android:fontFamily="@font/lusitana"
             android:backgroundTint="@color/brown"
             android:textSize="19dp"/>
 
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <TextView
         android:id="@+id/monthYearTV"
